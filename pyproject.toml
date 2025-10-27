@@ -3,7 +3,7 @@ requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "kaito_rag_client"
+name = "kaito_rag_engine_client"
 version = "0.0.1"
 description = "KAITO RAG Engine Client"
 readme = "README.md"

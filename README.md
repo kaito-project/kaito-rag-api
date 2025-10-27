@@ -7,17 +7,7 @@
 A Python client library for interacting with the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag-api/) API. This client is generated using the [openapi-python-client](https://github.com/openapi-generators/openapi-python-client) project against the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag/) OpenAPI spec.
 
 ## Client Generation
-The OpenAPI spec for the KAITO RAGEngine is generated from the FastAPI service the RAGEngine runs. To regenerate this client you can run:
-
-```bash
-# Install openapi-python-client
-pip install openapi-python-client
-
-# Run generation against the OpenAPI spec you downloaded from the RAG
-openapi-python-client generate --path <path_to_openapi_spec>.json
-# OR
-openapi-python-client generate --url <RAG_Engine_Endpoint>/openapi.json
-```
+The OpenAPI spec for the KAITO RAGEngine is generated from the FastAPI service the RAGEngine runs. To regenerate this client, first download the openapi.json file from a running RAGEngine Service at <RAG_Engine_Service_Endpoint>/openapi.json. Save the file into the repo and run `make generate-client`
 
 ## About KAITO
 

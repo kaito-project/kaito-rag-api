@@ -1,4 +1,4 @@
-"""A client library for accessing FastAPI"""
+"""A client library for accessing KAITO RAG Engine"""
 
 from .client import AuthenticatedClient, Client
 
