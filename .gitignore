@@ -2,6 +2,29 @@
 __pycache__/
 *.py[cod]
 *$py.class
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+
+# pyenv
+.python-version
+
+# Environments
+.env
+.venv
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# JetBrains
+.idea/
+
+/coverage.xml
+/.coverage
+
 
 # Distribution / packaging
 .Python
