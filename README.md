@@ -4,11 +4,24 @@
 [![Python Support](https://img.shields.io/pypi/pyversions/kaito-rag-client)](https://pypi.org/project/kaito-rag-client/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-A Python client library for interacting with the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag-api/) API. This client provides a simple and intuitive interface for managing Retrieval-Augmented Generation (RAG) workflows using the KAITO project's RAG capabilities.
+A Python client library for interacting with the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag-api/) API. This client is generated using the [openapi-python-client](https://github.com/openapi-generators/openapi-python-client) project against the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag/) OpenAPI spec.
+
+## Client Generation
+The OpenAPI spec for the KAITO RAGEngine is generated from the FastAPI service the RAGEngine runs. To regenerate this client you can run:
+
+```bash
+# Install openapi-python-client
+pip install openapi-python-client
+
+# Run generation against the OpenAPI spec you downloaded from the RAG
+openapi-python-client generate --path <path_to_openapi_spec>.json
+# OR
+openapi-python-client generate --url <RAG_Engine_Endpoint>/openapi.json
+```
 
 ## About KAITO
 
-[KAITO (Kubernetes AI Toolchain Operator)](https://github.com/kaito-project/kaito) is an operator that automates AI/ML model inference workloads in Kubernetes clusters. The RAGEngine component provides powerful Retrieval-Augmented Generation capabilities, combining large language models with information retrieval systems for enhanced, context-aware responses.
+[KAITO (Kubernetes AI Toolchain Operator)](https://github.com/kaito-project/kaito) is an operator that automates AI/ML model inference workloads in Kubernetes clusters. The [RAGEngine](https://kaito-project.github.io/kaito/docs/rag/) component provides powerful Retrieval-Augmented Generation capabilities, combining large language models with information retrieval systems for enhanced, context-aware responses.
 
 ## Features
 
