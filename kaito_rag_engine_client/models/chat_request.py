@@ -4,11 +4,11 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="ChatCompletionsV1ChatCompletionsPostRequest")
+T = TypeVar("T", bound="ChatRequest")
 
 
 @_attrs_define
-class ChatCompletionsV1ChatCompletionsPostRequest:
+class ChatRequest:
     """ """
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -22,10 +22,10 @@ class ChatCompletionsV1ChatCompletionsPostRequest:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        chat_completions_v1_chat_completions_post_request = cls()
+        chat_request = cls()
 
-        chat_completions_v1_chat_completions_post_request.additional_properties = d
-        return chat_completions_v1_chat_completions_post_request
+        chat_request.additional_properties = d
+        return chat_request
 
     @property
     def additional_keys(self) -> list[str]:

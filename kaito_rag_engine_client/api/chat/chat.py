@@ -6,14 +6,14 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.chat_completion_response import ChatCompletionResponse
-from ...models.chat_completions_v1_chat_completions_post_request import ChatCompletionsV1ChatCompletionsPostRequest
+from ...models.chat_request import ChatRequest
 from ...models.http_validation_error import HTTPValidationError
 from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: ChatCompletionsV1ChatCompletionsPostRequest,
+    body: ChatRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -63,7 +63,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ChatCompletionsV1ChatCompletionsPostRequest,
+    body: ChatRequest,
 ) -> Response[Union[ChatCompletionResponse, HTTPValidationError]]:
     r"""OpenAI-Compatible Chat Completions API
 
@@ -111,7 +111,7 @@ def sync_detailed(
         ```
 
     Args:
-        body (ChatCompletionsV1ChatCompletionsPostRequest):
+        body (ChatRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -135,7 +135,7 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ChatCompletionsV1ChatCompletionsPostRequest,
+    body: ChatRequest,
 ) -> Optional[Union[ChatCompletionResponse, HTTPValidationError]]:
     r"""OpenAI-Compatible Chat Completions API
 
@@ -183,7 +183,7 @@ def sync(
         ```
 
     Args:
-        body (ChatCompletionsV1ChatCompletionsPostRequest):
+        body (ChatRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -202,7 +202,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ChatCompletionsV1ChatCompletionsPostRequest,
+    body: ChatRequest,
 ) -> Response[Union[ChatCompletionResponse, HTTPValidationError]]:
     r"""OpenAI-Compatible Chat Completions API
 
@@ -250,7 +250,7 @@ async def asyncio_detailed(
         ```
 
     Args:
-        body (ChatCompletionsV1ChatCompletionsPostRequest):
+        body (ChatRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -272,7 +272,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ChatCompletionsV1ChatCompletionsPostRequest,
+    body: ChatRequest,
 ) -> Optional[Union[ChatCompletionResponse, HTTPValidationError]]:
     r"""OpenAI-Compatible Chat Completions API
 
@@ -320,7 +320,7 @@ async def asyncio(
         ```
 
     Args:
-        body (ChatCompletionsV1ChatCompletionsPostRequest):
+        body (ChatRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

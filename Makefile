@@ -7,5 +7,6 @@ install-openapi-generator:
 .PHONY: generate-client
 generate-client: install-openapi-generator
 	openapi-python-client generate --path $(OPEN_API_SPEC) --meta=setup --overwrite
+	rm -rf ./kaito_rag_engine_client/*
 	mv ./kaito-rag-engine-client/kaito_rag_engine_client/* ./kaito_rag_engine_client/
 	rm -rf ./kaito-rag-engine-client

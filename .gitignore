@@ -60,3 +60,5 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+
+openapi.json

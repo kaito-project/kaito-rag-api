@@ -8,7 +8,7 @@ from .chat_completion_message_tool_call import ChatCompletionMessageToolCall
 from .chat_completion_response import ChatCompletionResponse
 from .chat_completion_response_service_tier_type_0 import ChatCompletionResponseServiceTierType0
 from .chat_completion_token_logprob import ChatCompletionTokenLogprob
-from .chat_completions_v1_chat_completions_post_request import ChatCompletionsV1ChatCompletionsPostRequest
+from .chat_request import ChatRequest
 from .choice import Choice
 from .choice_finish_reason import ChoiceFinishReason
 from .choice_logprobs import ChoiceLogprobs
@@ -45,8 +45,8 @@ __all__ = (
     "ChatCompletionMessageToolCall",
     "ChatCompletionResponse",
     "ChatCompletionResponseServiceTierType0",
-    "ChatCompletionsV1ChatCompletionsPostRequest",
     "ChatCompletionTokenLogprob",
+    "ChatRequest",
     "Choice",
     "ChoiceFinishReason",
     "ChoiceLogprobs",
