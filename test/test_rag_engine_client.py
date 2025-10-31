@@ -16,8 +16,6 @@ from kaito_rag_engine_client.models.chat_request import ChatRequest
 from kaito_rag_engine_client.models.chat_completion_response import ChatCompletionResponse
 from kaito_rag_engine_client.models.index_request import IndexRequest
 from kaito_rag_engine_client.models.document import Document
-from kaito_rag_engine_client.models.query_request import QueryRequest
-from kaito_rag_engine_client.models.query_response import QueryResponse
 from kaito_rag_engine_client.models.delete_document_request import DeleteDocumentRequest
 from kaito_rag_engine_client.models.update_document_request import UpdateDocumentRequest
 from kaito_rag_engine_client.models.health_status import HealthStatus
@@ -34,7 +32,6 @@ from kaito_rag_engine_client.api.index import (
     list_documents_in_index,
     update_documents_in_index,
 )
-from kaito_rag_engine_client.api.query import query_index
 from kaito_rag_engine_client.api.monitoring import get_health, get_metrics
 
 
@@ -435,88 +432,6 @@ class TestDocumentManagementAPI:
         assert "/indexes/test-index/documents" in call_args[1]["url"]
 
         assert response.status_code == HTTPStatus.OK
-
-
-class TestQueryAPI:
-    """Test query API endpoints."""
-
-    @pytest.fixture
-    def mock_client(self):
-        """Create a mock client for testing."""
-        return Client(base_url="http://localhost:5789")
-
-    @pytest.fixture
-    def sample_query_request(self):
-        """Create a sample query request."""
-        return QueryRequest(
-            index_name="test-index",
-            query="What is machine learning?",
-            top_k=5
-        )
-
-    @pytest.fixture
-    def sample_query_response_data(self):
-        """Create sample query response data."""
-        return {
-            "response": "Machine learning is a subset of AI that involves algorithms learning from data.",
-            "source_nodes": [
-                {
-                    "doc_id": "doc1",
-                    "node_id": "node1",
-                    "text": "Machine learning is a subset of AI...",
-                    "score": 0.95,
-                    "metadata": {"category": "AI"}
-                },
-                {
-                    "doc_id": "doc2",
-                    "node_id": "node2",
-                    "text": "ML algorithms learn from data...",
-                    "score": 0.87,
-                    "metadata": {"category": "algorithms"}
-                }
-            ],
-            "metadata": None
-        }
-
-    @patch('httpx.Client.request')
-    def test_query_index_sync(self, mock_request, mock_client, sample_query_request, sample_query_response_data):
-        """Test query index endpoint."""
-        mock_response = Mock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = sample_query_response_data
-        mock_response.content = b"response content"
-        mock_response.headers = {}
-        mock_request.return_value = mock_response
-
-        response = query_index.sync_detailed(
-            client=mock_client,
-            body=sample_query_request
-        )
-
-        mock_request.assert_called_once()
-        call_args = mock_request.call_args
-        assert call_args[1]["method"] == "post"
-        assert call_args[1]["url"] == "/query"
-
-        assert response.status_code == HTTPStatus.OK
-        assert isinstance(response.parsed, QueryResponse)
-
-    @patch('httpx.Client.request')
-    def test_query_index_sync_convenience_method(self, mock_request, mock_client, sample_query_request, sample_query_response_data):
-        """Test query index sync convenience method."""
-        mock_response = Mock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = sample_query_response_data
-        mock_response.content = b"response content"
-        mock_response.headers = {}
-        mock_request.return_value = mock_response
-
-        result = query_index.sync(
-            client=mock_client,
-            body=sample_query_request
-        )
-
-        assert isinstance(result, QueryResponse)
 
 
 class TestMonitoringAPI:
