@@ -1,0 +1,117 @@
+name: Create release
+on:
+  workflow_dispatch:
+    inputs:
+      release_branch:
+        description: 'The branch to create the release from'
+        required: true
+        type: string
+      release_version:
+        description: 'The version for the new release (e.g., 0.1.0)'
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: write
+  packages: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Checkout the repository at the release branch
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          submodules: true
+          fetch-depth: 0
+          ref: ${{ github.event.inputs.release_version }}
+      - name: Validate inputs
+        run: |
+          echo "Creating release ${{ github.event.inputs.release_version }} from branch ${{ github.event.inputs.release_branch }}"
+          
+          # Validate release version format
+          if [[ ! "${{ github.event.inputs.release_version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Release version must follow format X.Y.Z"
+            exit 1
+          fi
+          
+          # Validate release branch format
+          if [[ ! "${{ github.event.inputs.release_branch }}" =~ ^release- ]]; then
+            echo "Error: Release branch must start with 'release-'"
+            exit 1
+          fi
+          
+          # Extract version from pyproject.toml and validate it matches the input
+          PYPROJECT_VERSION=$(python -c "
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+              data = tomllib.load(f)
+          print(data['project']['version'])
+          ")
+          
+          echo "Input release version: ${{ github.event.inputs.release_version }}"
+          echo "pyproject.toml version: $PYPROJECT_VERSION"
+          
+          if [[ "${{ github.event.inputs.release_version }}" != "$PYPROJECT_VERSION" ]]; then
+            echo "Error: Release version '${{ github.event.inputs.release_version }}' does not match pyproject.toml version '$PYPROJECT_VERSION'"
+            echo "Please update the version in pyproject.toml to match the release version, or use the correct version from pyproject.toml"
+            exit 1
+          fi
+          
+          echo "✓ Release version matches pyproject.toml version"
+      - name: Check if release already exists
+        id: check-release
+        run: |
+          TAG="${{ github.event.inputs.release_version }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Release $TAG already exists, skipping creation"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Release $TAG does not exist, proceeding with creation"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install build
+          python3 -m pip install -r requirements.txt
+          python3 -m pip install -r test-requirements.txt
+      - name: Test package
+        run: |
+          # Run the test suite
+          pytest test/
+      - name: Build a binary wheel and a source tarball
+        run: python3 -m build
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  publish-to-testpypi:
+    name: Publish Python distribution to TestPyPI
+    needs:
+    - create-release
+    runs-on: ubuntu-latest
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/kaito-rag-engine-client
+
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    - name: Publish distribution to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
