@@ -35,45 +35,164 @@ For detailed setup instructions, see the [KAITO documentation](https://kaito-pro
 
 
 ## Usage
-First, create a client:
+For sync usage, you need to create a Client and pass it into the desired api's as follows:
 
 ```python
-from kaito_rag_client import Client
+from kaito_rag_engine_client import Client
+from kaito_rag_engine_client.api.chat import chat
+from kaito_rag_engine_client.models import IndexRequest, Document, UpdateDocumentRequest, DeleteDocumentRequest, ChatRequest
+from kaito_rag_engine_client.api.index import list_indexes, create_index, delete_index, list_documents_in_index, delete_documents_in_index, update_documents_in_index, persist_index, load_index
 
-client = Client(base_url="https://api.example.com")
-```
+client = Client(base_url="http://api.example.com")
 
-If the endpoints you're going to hit require authentication, use `AuthenticatedClient` instead:
+# List all indexes
+indexes = list_indexes.sync(client=client)
 
-```python
-from kaito_rag_client import AuthenticatedClient
+#Create Index Request
+resp = create_index.sync(client=client,body=IndexRequest(
+    index_name="test_index",
+    documents=[
+        Document(
+            text="Sample document text",
+            metadata={"source": "unit_test"}
+        )
+    ]
+))
 
-client = AuthenticatedClient(base_url="https://api.example.com", token="SuperSecretToken")
-```
+# Delete Index Request
+delete_resp = delete_index.sync(client=client, index_name="test_index")
 
-Now call your endpoint and use your models:
+# Persist Index Request
+persist_index_resp = persist_index.sync(
+    client=client,
+    index_name="test_index"
+)
 
-```python
-from kaito_rag_client.models import MyDataModel
-from kaito_rag_client.api.my_tag import get_my_data_model
-from kaito_rag_client.types import Response
+# Load Index Request
+load_index_resp = load_index.sync(
+    client=client,
+    index_name="test_index",
+    overwrite=True
+)
 
-with client as client:
-    my_data: MyDataModel = get_my_data_model.sync(client=client)
-    # or if you need more info (e.g. status_code)
-    response: Response[MyDataModel] = get_my_data_model.sync_detailed(client=client)
+# List Documents In Index Request
+list_resp = list_documents_in_index.sync(client=client, index_name="test_index")
+
+# Update a Documents text
+test_doc = list_resp.documents[0]
+test_doc.text = "Updated document text"
+
+# Update Documents Request
+update_resp = update_documents_in_index.sync(
+    client=client,
+    index_name="test_index",
+    body=UpdateDocumentRequest(
+        documents=[
+            test_doc
+        ]
+    )
+)
+
+# Delete Documents Request
+delete_doc_resp = delete_documents_in_index.sync(
+    client=client,
+    index_name="test_index",
+    body=DeleteDocumentRequest(
+        doc_ids=[
+            test_doc.doc_id
+        ]
+    )
+)
+
+# Chat Completions Request
+chat_resp = chat.sync(client=client, body=ChatRequest.from_dict({
+        "index_name": "test_index",
+        "model": "<Your Model>",
+        "messages": [{"role": "user", "content": "What can you tell me about AI?"}],
+        "temperature": 0.7,
+        "max_tokens": 100,
+    }
+))
 ```
 
 Or do the same thing with an async version:
 
 ```python
-from kaito_rag_client.models import MyDataModel
-from kaito_rag_client.api.my_tag import get_my_data_model
-from kaito_rag_client.types import Response
+from kaito_rag_engine_client import Client
+from kaito_rag_engine_client.api.chat import chat
+from kaito_rag_engine_client.models import IndexRequest, Document, UpdateDocumentRequest, DeleteDocumentRequest, ChatRequest
+from kaito_rag_engine_client.api.index import list_indexes, create_index, delete_index, list_documents_in_index, delete_documents_in_index, update_documents_in_index, persist_index, load_index
 
-async with client as client:
-    my_data: MyDataModel = await get_my_data_model.asyncio(client=client)
-    response: Response[MyDataModel] = await get_my_data_model.asyncio_detailed(client=client)
+client = Client(base_url="http://api.example.com")
+
+# List all indexes
+indexes = await list_indexes.asyncio(client=client)
+
+#Create Index Request
+resp = await create_index.asyncio(client=client,body=IndexRequest(
+    index_name="test_index",
+    documents=[
+        Document(
+            text="Sample document text",
+            metadata={"source": "unit_test"}
+        )
+    ]
+))
+
+# Delete Index Request
+delete_resp = await delete_index.asyncio(client=client, index_name="test_index")
+
+# Persist Index Request
+persist_index_resp = await persist_index.asyncio(
+    client=client,
+    index_name="test_index"
+)
+
+# Load Index Request
+load_index_resp = await load_index.asyncio(
+    client=client,
+    index_name="test_index",
+    overwrite=True
+)
+
+# List Documents In Index Request
+list_resp = await list_documents_in_index.asyncio(client=client, index_name="test_index")
+
+# Update a Documents text
+test_doc = list_resp.documents[0]
+test_doc.text = "Updated document text"
+
+# Update Documents Request
+update_resp = await update_documents_in_index.asyncio(
+    client=client,
+    index_name="test_index",
+    body=UpdateDocumentRequest(
+        documents=[
+            test_doc
+        ]
+    )
+)
+
+# Delete Documents Request
+delete_doc_resp = await delete_documents_in_index.asyncio(
+    client=client,
+    index_name="test_index",
+    body=DeleteDocumentRequest(
+        doc_ids=[
+            test_doc.doc_id
+        ]
+    )
+)
+
+# Chat Completions Request
+chat_resp = await chat.asyncio(client=client, body=ChatRequest.from_dict({
+        "index_name": "test_index",
+        "model": "<YOUR_MODEL>",
+        "messages": [{"role": "user", "content": "What can you tell me about AI?"}],
+        "temperature": 0.7,
+        "max_tokens": 100,
+    }
+))
 ```
 
 By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
@@ -133,7 +252,7 @@ You can even set the httpx client directly, but beware that this will override a
 
 ```python
 import httpx
-from kaito_rag_client import Client
+from kaito_rag_engine_client import Client
 
 client = Client(
     base_url="https://api.example.com",

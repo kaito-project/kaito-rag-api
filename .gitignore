@@ -61,4 +61,5 @@ coverage.xml
 .pytest_cache/
 cover/
 
+.DS_Store
 openapi.json
