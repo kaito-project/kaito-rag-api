@@ -11,18 +11,18 @@ from unittest.mock import Mock, patch
 import httpx
 from http import HTTPStatus
 
-from kaito_rag_engine_client.client import Client, AuthenticatedClient
-from kaito_rag_engine_client.models.chat_request import ChatRequest
-from kaito_rag_engine_client.models.chat_completion_response import ChatCompletionResponse
-from kaito_rag_engine_client.models.index_request import IndexRequest
-from kaito_rag_engine_client.models.document import Document
-from kaito_rag_engine_client.models.delete_document_request import DeleteDocumentRequest
-from kaito_rag_engine_client.models.update_document_request import UpdateDocumentRequest
-from kaito_rag_engine_client.models.health_status import HealthStatus
-from kaito_rag_engine_client.models.http_validation_error import HTTPValidationError
+from src.kaito_rag_engine_client.client import Client, AuthenticatedClient
+from src.kaito_rag_engine_client.models.chat_request import ChatRequest
+from src.kaito_rag_engine_client.models.chat_completion_response import ChatCompletionResponse
+from src.kaito_rag_engine_client.models.index_request import IndexRequest
+from src.kaito_rag_engine_client.models.document import Document
+from src.kaito_rag_engine_client.models.delete_document_request import DeleteDocumentRequest
+from src.kaito_rag_engine_client.models.update_document_request import UpdateDocumentRequest
+from src.kaito_rag_engine_client.models.health_status import HealthStatus
+from src.kaito_rag_engine_client.models.http_validation_error import HTTPValidationError
 
-from kaito_rag_engine_client.api.chat import chat
-from kaito_rag_engine_client.api.index import (
+from src.kaito_rag_engine_client.api.chat import chat
+from src.kaito_rag_engine_client.api.index import (
     create_index,
     delete_index,
     list_indexes,
@@ -32,7 +32,7 @@ from kaito_rag_engine_client.api.index import (
     list_documents_in_index,
     update_documents_in_index,
 )
-from kaito_rag_engine_client.api.monitoring import get_health, get_metrics
+from src.kaito_rag_engine_client.api.monitoring import get_health, get_metrics
 
 
 class TestClientSetup:
