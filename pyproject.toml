@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kaito-rag-engine-client"
+version = "0.0.4"
+description = "KAITO RAG Engine Client"
+readme = "README.md"
+authors = [
+    { name = "Fei Guo", email = "guofei@microsoft.com" },
+    { name = "Brandon Foley", email = "brandon.foley@microsoft.com" },
+]
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+classifiers = [
+"Programming Language :: Python :: 3",
+"Operating System :: OS Independent",
+]
+dependencies = [
+    "httpx>=0.24.0",
+    "attrs>=21.0.0"
+]
+requires-python = ">=3.9"
+
+[project.urls]
+Homepage = "https://github.com/kaito-project/kaito-rag-api"
+Issues = "https://github.com/kaito-project/kaito-rag-api/issues"
