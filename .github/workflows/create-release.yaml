@@ -86,6 +86,7 @@ jobs:
       - name: Test package
         run: |
           # Run the test suite
+          export PYTHONPATH=$(pwd)/src
           pytest test/
       - name: Build a binary wheel and a source tarball
         run: python3 -m build
