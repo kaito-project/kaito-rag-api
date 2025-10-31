@@ -27,11 +27,6 @@ from .list_documents_response import ListDocumentsResponse
 from .node_with_score import NodeWithScore
 from .node_with_score_metadata_type_0 import NodeWithScoreMetadataType0
 from .prompt_tokens_details import PromptTokensDetails
-from .query_request import QueryRequest
-from .query_request_llm_params_type_0 import QueryRequestLlmParamsType0
-from .query_request_rerank_params_type_0 import QueryRequestRerankParamsType0
-from .query_response import QueryResponse
-from .query_response_metadata_type_0 import QueryResponseMetadataType0
 from .top_logprob import TopLogprob
 from .update_document_request import UpdateDocumentRequest
 from .update_document_response import UpdateDocumentResponse
@@ -65,11 +60,6 @@ __all__ = (
     "NodeWithScore",
     "NodeWithScoreMetadataType0",
     "PromptTokensDetails",
-    "QueryRequest",
-    "QueryRequestLlmParamsType0",
-    "QueryRequestRerankParamsType0",
-    "QueryResponse",
-    "QueryResponseMetadataType0",
     "TopLogprob",
     "UpdateDocumentRequest",
     "UpdateDocumentResponse",

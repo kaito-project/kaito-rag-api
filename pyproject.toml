@@ -17,7 +17,10 @@ classifiers = [
 "Programming Language :: Python :: 3",
 "Operating System :: OS Independent",
 ]
-dependencies = ["requests"]
+dependencies = [
+    "httpx>=0.24.0",
+    "attrs>=21.0.0"
+]
 requires-python = ">=3.9"
 
 [project.urls]
