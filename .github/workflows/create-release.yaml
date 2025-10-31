@@ -116,3 +116,26 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         repository-url: https://test.pypi.org/legacy/
+  
+  publish-to-github:
+    name: Publish Release to GitHub
+    needs:
+    - create-release
+    - publish-to-testpypi
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v${{ github.event.inputs.release_version }}
+        name: Release v${{ github.event.inputs.release_version }}
+        files: |
+          dist/*.tar.gz
+          dist/*.whl
