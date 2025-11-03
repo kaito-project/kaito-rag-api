@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kaito-rag-engine-client"
-version = "0.0.1"
+version = "0.7.0"
 description = "KAITO RAG Engine Client"
 readme = "README.md"
 authors = [
