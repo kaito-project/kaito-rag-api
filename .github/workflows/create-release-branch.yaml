@@ -1,0 +1,92 @@
+name: Create release branch
+on:
+  workflow_dispatch:
+    inputs:
+      kaito_rag_engine_version:
+        description: 'The version of kaito-rag-engine to base the release on (e.g., 0.1.0)'
+        required: true
+        type: string
+
+permissions:
+  id-token: write
+  contents: write
+  pull-requests: write
+  packages: write
+
+env:
+  IMAGE_NAME: 'kaito-rag-service'
+  REGISTRY: ghcr.io
+
+jobs:
+  create-release-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Checkout the repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0
+      - name: Validate input
+        run: |
+          echo "Creating release branch for kaito-rag-engine version ${{ github.event.inputs.kaito_rag_engine_version }}"
+          
+          # Validate version format
+          if [[ ! "${{ github.event.inputs.kaito_rag_engine_version }}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Version must follow format X.Y.Z"
+            exit 1
+          fi
+      - name: Create release branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          RELEASE_BRANCH="release-${{ github.event.inputs.kaito_rag_engine_version }}"
+          git checkout -b $RELEASE_BRANCH
+          git push --set-upstream origin release-${{ github.event.inputs.kaito_rag_engine_version }}
+      - name: Login to ${{ steps.get-registry.outputs.registry_repository }}
+        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run kaito_rag_engine container and download openapi.json
+        run: |
+          # Start container in background with port mapping
+          docker run --rm -d --name kaito-rag-engine \
+            -p 5000:5000 \
+            ${{ env.REGISTRY }}/kaito-project/kaito/${{ env.IMAGE_NAME }}:${{ github.event.inputs.kaito_rag_engine_version }} python3 main.py
+          
+          # Wait for service to be ready
+          echo "Waiting for service to start..."
+          for i in {1..30}; do
+            if curl -s http://localhost:5000/health > /dev/null 2>&1 || curl -s http://localhost:5000/ > /dev/null 2>&1; then
+              echo "Service is ready!"
+              break
+            fi
+            echo "Attempt $i: Service not ready yet, waiting 2 seconds..."
+            sleep 2
+          done
+          
+          # Download openapi.json
+          wget http://localhost:5000/openapi.json -O openapi.json
+          
+          # Stop the container
+          docker stop kaito-rag-engine
+      - name: Generate updated client code
+        run: |
+          make generate-client
+      - name: Update pyproject version
+        run: |
+          VERSION="${{ github.event.inputs.kaito_rag_engine_version }}"
+          sed -i "s/^version = .*/version = \"$VERSION\"/" pyproject.toml
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v7.0.8
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update client code for kaito-rag-engine v${{ github.event.inputs.kaito_rag_engine_version }}
+          branch: release-${{ github.event.inputs.kaito_rag_engine_version }}
+          title: 'Update client code for kaito-rag-engine v${{ github.event.inputs.kaito_rag_engine_version }}'
+          body: 'This PR updates the client code to be compatible with kaito-rag-engine version ${{ github.event.inputs.kaito_rag_engine_version }}.'
+          base: main
