@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,14 +23,14 @@ class NodeWithScore:
         node_id (str):
         text (str):
         score (float):
-        metadata (Union['NodeWithScoreMetadataType0', None, Unset]):
+        metadata (NodeWithScoreMetadataType0 | None | Unset):
     """
 
     doc_id: str
     node_id: str
     text: str
     score: float
-    metadata: Union["NodeWithScoreMetadataType0", None, Unset] = UNSET
+    metadata: NodeWithScoreMetadataType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,7 +44,7 @@ class NodeWithScore:
 
         score = self.score
 
-        metadata: Union[None, Unset, dict[str, Any]]
+        metadata: dict[str, Any] | None | Unset
         if isinstance(self.metadata, Unset):
             metadata = UNSET
         elif isinstance(self.metadata, NodeWithScoreMetadataType0):
@@ -78,7 +80,7 @@ class NodeWithScore:
 
         score = d.pop("score")
 
-        def _parse_metadata(data: object) -> Union["NodeWithScoreMetadataType0", None, Unset]:
+        def _parse_metadata(data: object) -> NodeWithScoreMetadataType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -89,9 +91,9 @@ class NodeWithScore:
                 metadata_type_0 = NodeWithScoreMetadataType0.from_dict(data)
 
                 return metadata_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["NodeWithScoreMetadataType0", None, Unset], data)
+            return cast(NodeWithScoreMetadataType0 | None | Unset, data)
 
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 

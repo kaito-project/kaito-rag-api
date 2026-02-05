@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,21 +23,21 @@ class ChatCompletionMessage:
     """
     Attributes:
         role (Literal['assistant']):
-        content (Union[None, Unset, str]):
-        refusal (Union[None, Unset, str]):
-        annotations (Union[None, Unset, list['Annotation']]):
-        audio (Union['ChatCompletionAudio', None, Unset]):
-        function_call (Union['FunctionCall', None, Unset]):
-        tool_calls (Union[None, Unset, list['ChatCompletionMessageToolCall']]):
+        content (None | str | Unset):
+        refusal (None | str | Unset):
+        annotations (list[Annotation] | None | Unset):
+        audio (ChatCompletionAudio | None | Unset):
+        function_call (FunctionCall | None | Unset):
+        tool_calls (list[ChatCompletionMessageToolCall] | None | Unset):
     """
 
     role: Literal["assistant"]
-    content: Union[None, Unset, str] = UNSET
-    refusal: Union[None, Unset, str] = UNSET
-    annotations: Union[None, Unset, list["Annotation"]] = UNSET
-    audio: Union["ChatCompletionAudio", None, Unset] = UNSET
-    function_call: Union["FunctionCall", None, Unset] = UNSET
-    tool_calls: Union[None, Unset, list["ChatCompletionMessageToolCall"]] = UNSET
+    content: None | str | Unset = UNSET
+    refusal: None | str | Unset = UNSET
+    annotations: list[Annotation] | None | Unset = UNSET
+    audio: ChatCompletionAudio | None | Unset = UNSET
+    function_call: FunctionCall | None | Unset = UNSET
+    tool_calls: list[ChatCompletionMessageToolCall] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -44,19 +46,19 @@ class ChatCompletionMessage:
 
         role = self.role
 
-        content: Union[None, Unset, str]
+        content: None | str | Unset
         if isinstance(self.content, Unset):
             content = UNSET
         else:
             content = self.content
 
-        refusal: Union[None, Unset, str]
+        refusal: None | str | Unset
         if isinstance(self.refusal, Unset):
             refusal = UNSET
         else:
             refusal = self.refusal
 
-        annotations: Union[None, Unset, list[dict[str, Any]]]
+        annotations: list[dict[str, Any]] | None | Unset
         if isinstance(self.annotations, Unset):
             annotations = UNSET
         elif isinstance(self.annotations, list):
@@ -68,7 +70,7 @@ class ChatCompletionMessage:
         else:
             annotations = self.annotations
 
-        audio: Union[None, Unset, dict[str, Any]]
+        audio: dict[str, Any] | None | Unset
         if isinstance(self.audio, Unset):
             audio = UNSET
         elif isinstance(self.audio, ChatCompletionAudio):
@@ -76,7 +78,7 @@ class ChatCompletionMessage:
         else:
             audio = self.audio
 
-        function_call: Union[None, Unset, dict[str, Any]]
+        function_call: dict[str, Any] | None | Unset
         if isinstance(self.function_call, Unset):
             function_call = UNSET
         elif isinstance(self.function_call, FunctionCall):
@@ -84,7 +86,7 @@ class ChatCompletionMessage:
         else:
             function_call = self.function_call
 
-        tool_calls: Union[None, Unset, list[dict[str, Any]]]
+        tool_calls: list[dict[str, Any]] | None | Unset
         if isinstance(self.tool_calls, Unset):
             tool_calls = UNSET
         elif isinstance(self.tool_calls, list):
@@ -130,25 +132,25 @@ class ChatCompletionMessage:
         if role != "assistant":
             raise ValueError(f"role must match const 'assistant', got '{role}'")
 
-        def _parse_content(data: object) -> Union[None, Unset, str]:
+        def _parse_content(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         content = _parse_content(d.pop("content", UNSET))
 
-        def _parse_refusal(data: object) -> Union[None, Unset, str]:
+        def _parse_refusal(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         refusal = _parse_refusal(d.pop("refusal", UNSET))
 
-        def _parse_annotations(data: object) -> Union[None, Unset, list["Annotation"]]:
+        def _parse_annotations(data: object) -> list[Annotation] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -164,13 +166,13 @@ class ChatCompletionMessage:
                     annotations_type_0.append(annotations_type_0_item)
 
                 return annotations_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["Annotation"]], data)
+            return cast(list[Annotation] | None | Unset, data)
 
         annotations = _parse_annotations(d.pop("annotations", UNSET))
 
-        def _parse_audio(data: object) -> Union["ChatCompletionAudio", None, Unset]:
+        def _parse_audio(data: object) -> ChatCompletionAudio | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -181,13 +183,13 @@ class ChatCompletionMessage:
                 audio_type_0 = ChatCompletionAudio.from_dict(data)
 
                 return audio_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["ChatCompletionAudio", None, Unset], data)
+            return cast(ChatCompletionAudio | None | Unset, data)
 
         audio = _parse_audio(d.pop("audio", UNSET))
 
-        def _parse_function_call(data: object) -> Union["FunctionCall", None, Unset]:
+        def _parse_function_call(data: object) -> FunctionCall | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -198,13 +200,13 @@ class ChatCompletionMessage:
                 function_call_type_0 = FunctionCall.from_dict(data)
 
                 return function_call_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["FunctionCall", None, Unset], data)
+            return cast(FunctionCall | None | Unset, data)
 
         function_call = _parse_function_call(d.pop("function_call", UNSET))
 
-        def _parse_tool_calls(data: object) -> Union[None, Unset, list["ChatCompletionMessageToolCall"]]:
+        def _parse_tool_calls(data: object) -> list[ChatCompletionMessageToolCall] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -220,9 +222,9 @@ class ChatCompletionMessage:
                     tool_calls_type_0.append(tool_calls_type_0_item)
 
                 return tool_calls_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ChatCompletionMessageToolCall"]], data)
+            return cast(list[ChatCompletionMessageToolCall] | None | Unset, data)
 
         tool_calls = _parse_tool_calls(d.pop("tool_calls", UNSET))
 

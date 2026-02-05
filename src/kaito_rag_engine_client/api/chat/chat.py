@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -31,8 +31,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ChatCompletionResponse, HTTPValidationError]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ChatCompletionResponse | HTTPValidationError | None:
     if response.status_code == 200:
         response_200 = ChatCompletionResponse.from_dict(response.json())
 
@@ -50,8 +50,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ChatCompletionResponse, HTTPValidationError]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ChatCompletionResponse | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,9 +62,9 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ChatRequest,
-) -> Response[Union[ChatCompletionResponse, HTTPValidationError]]:
+) -> Response[ChatCompletionResponse | HTTPValidationError]:
     r"""OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
@@ -118,7 +118,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ChatCompletionResponse, HTTPValidationError]]
+        Response[ChatCompletionResponse | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -134,9 +134,9 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ChatRequest,
-) -> Optional[Union[ChatCompletionResponse, HTTPValidationError]]:
+) -> ChatCompletionResponse | HTTPValidationError | None:
     r"""OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
@@ -190,7 +190,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ChatCompletionResponse, HTTPValidationError]
+        ChatCompletionResponse | HTTPValidationError
     """
 
     return sync_detailed(
@@ -201,9 +201,9 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ChatRequest,
-) -> Response[Union[ChatCompletionResponse, HTTPValidationError]]:
+) -> Response[ChatCompletionResponse | HTTPValidationError]:
     r"""OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
@@ -257,7 +257,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ChatCompletionResponse, HTTPValidationError]]
+        Response[ChatCompletionResponse | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -271,9 +271,9 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ChatRequest,
-) -> Optional[Union[ChatCompletionResponse, HTTPValidationError]]:
+) -> ChatCompletionResponse | HTTPValidationError | None:
     r"""OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
@@ -327,7 +327,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ChatCompletionResponse, HTTPValidationError]
+        ChatCompletionResponse | HTTPValidationError
     """
 
     return (

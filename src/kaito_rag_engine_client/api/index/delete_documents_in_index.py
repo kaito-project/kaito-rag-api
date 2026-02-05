@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -20,7 +21,9 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": f"/indexes/{index_name}/documents/delete",
+        "url": "/indexes/{index_name}/documents/delete".format(
+            index_name=quote(str(index_name), safe=""),
+        ),
     }
 
     _kwargs["json"] = body.to_dict()
@@ -32,8 +35,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DeleteDocumentResponse, HTTPValidationError]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> DeleteDocumentResponse | HTTPValidationError | None:
     if response.status_code == 200:
         response_200 = DeleteDocumentResponse.from_dict(response.json())
 
@@ -51,8 +54,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DeleteDocumentResponse, HTTPValidationError]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[DeleteDocumentResponse | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -64,9 +67,9 @@ def _build_response(
 def sync_detailed(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
-) -> Response[Union[DeleteDocumentResponse, HTTPValidationError]]:
+) -> Response[DeleteDocumentResponse | HTTPValidationError]:
     r"""Delete documents in an Index
 
      Delete document in an Index by their ids.
@@ -94,7 +97,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DeleteDocumentResponse, HTTPValidationError]]
+        Response[DeleteDocumentResponse | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -112,9 +115,9 @@ def sync_detailed(
 def sync(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
-) -> Optional[Union[DeleteDocumentResponse, HTTPValidationError]]:
+) -> DeleteDocumentResponse | HTTPValidationError | None:
     r"""Delete documents in an Index
 
      Delete document in an Index by their ids.
@@ -142,7 +145,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DeleteDocumentResponse, HTTPValidationError]
+        DeleteDocumentResponse | HTTPValidationError
     """
 
     return sync_detailed(
@@ -155,9 +158,9 @@ def sync(
 async def asyncio_detailed(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
-) -> Response[Union[DeleteDocumentResponse, HTTPValidationError]]:
+) -> Response[DeleteDocumentResponse | HTTPValidationError]:
     r"""Delete documents in an Index
 
      Delete document in an Index by their ids.
@@ -185,7 +188,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DeleteDocumentResponse, HTTPValidationError]]
+        Response[DeleteDocumentResponse | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -201,9 +204,9 @@ async def asyncio_detailed(
 async def asyncio(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
-) -> Optional[Union[DeleteDocumentResponse, HTTPValidationError]]:
+) -> DeleteDocumentResponse | HTTPValidationError | None:
     r"""Delete documents in an Index
 
      Delete document in an Index by their ids.
@@ -231,7 +234,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DeleteDocumentResponse, HTTPValidationError]
+        DeleteDocumentResponse | HTTPValidationError
     """
 
     return (

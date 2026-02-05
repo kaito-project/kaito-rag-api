@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,16 +19,16 @@ T = TypeVar("T", bound="ChoiceLogprobs")
 class ChoiceLogprobs:
     """
     Attributes:
-        content (Union[None, Unset, list['ChatCompletionTokenLogprob']]):
-        refusal (Union[None, Unset, list['ChatCompletionTokenLogprob']]):
+        content (list[ChatCompletionTokenLogprob] | None | Unset):
+        refusal (list[ChatCompletionTokenLogprob] | None | Unset):
     """
 
-    content: Union[None, Unset, list["ChatCompletionTokenLogprob"]] = UNSET
-    refusal: Union[None, Unset, list["ChatCompletionTokenLogprob"]] = UNSET
+    content: list[ChatCompletionTokenLogprob] | None | Unset = UNSET
+    refusal: list[ChatCompletionTokenLogprob] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        content: Union[None, Unset, list[dict[str, Any]]]
+        content: list[dict[str, Any]] | None | Unset
         if isinstance(self.content, Unset):
             content = UNSET
         elif isinstance(self.content, list):
@@ -38,7 +40,7 @@ class ChoiceLogprobs:
         else:
             content = self.content
 
-        refusal: Union[None, Unset, list[dict[str, Any]]]
+        refusal: list[dict[str, Any]] | None | Unset
         if isinstance(self.refusal, Unset):
             refusal = UNSET
         elif isinstance(self.refusal, list):
@@ -66,7 +68,7 @@ class ChoiceLogprobs:
 
         d = dict(src_dict)
 
-        def _parse_content(data: object) -> Union[None, Unset, list["ChatCompletionTokenLogprob"]]:
+        def _parse_content(data: object) -> list[ChatCompletionTokenLogprob] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -82,13 +84,13 @@ class ChoiceLogprobs:
                     content_type_0.append(content_type_0_item)
 
                 return content_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ChatCompletionTokenLogprob"]], data)
+            return cast(list[ChatCompletionTokenLogprob] | None | Unset, data)
 
         content = _parse_content(d.pop("content", UNSET))
 
-        def _parse_refusal(data: object) -> Union[None, Unset, list["ChatCompletionTokenLogprob"]]:
+        def _parse_refusal(data: object) -> list[ChatCompletionTokenLogprob] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -104,9 +106,9 @@ class ChoiceLogprobs:
                     refusal_type_0.append(refusal_type_0_item)
 
                 return refusal_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["ChatCompletionTokenLogprob"]], data)
+            return cast(list[ChatCompletionTokenLogprob] | None | Unset, data)
 
         refusal = _parse_refusal(d.pop("refusal", UNSET))
 

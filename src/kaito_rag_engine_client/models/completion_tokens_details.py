@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,38 +15,38 @@ T = TypeVar("T", bound="CompletionTokensDetails")
 class CompletionTokensDetails:
     """
     Attributes:
-        accepted_prediction_tokens (Union[None, Unset, int]):
-        audio_tokens (Union[None, Unset, int]):
-        reasoning_tokens (Union[None, Unset, int]):
-        rejected_prediction_tokens (Union[None, Unset, int]):
+        accepted_prediction_tokens (int | None | Unset):
+        audio_tokens (int | None | Unset):
+        reasoning_tokens (int | None | Unset):
+        rejected_prediction_tokens (int | None | Unset):
     """
 
-    accepted_prediction_tokens: Union[None, Unset, int] = UNSET
-    audio_tokens: Union[None, Unset, int] = UNSET
-    reasoning_tokens: Union[None, Unset, int] = UNSET
-    rejected_prediction_tokens: Union[None, Unset, int] = UNSET
+    accepted_prediction_tokens: int | None | Unset = UNSET
+    audio_tokens: int | None | Unset = UNSET
+    reasoning_tokens: int | None | Unset = UNSET
+    rejected_prediction_tokens: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        accepted_prediction_tokens: Union[None, Unset, int]
+        accepted_prediction_tokens: int | None | Unset
         if isinstance(self.accepted_prediction_tokens, Unset):
             accepted_prediction_tokens = UNSET
         else:
             accepted_prediction_tokens = self.accepted_prediction_tokens
 
-        audio_tokens: Union[None, Unset, int]
+        audio_tokens: int | None | Unset
         if isinstance(self.audio_tokens, Unset):
             audio_tokens = UNSET
         else:
             audio_tokens = self.audio_tokens
 
-        reasoning_tokens: Union[None, Unset, int]
+        reasoning_tokens: int | None | Unset
         if isinstance(self.reasoning_tokens, Unset):
             reasoning_tokens = UNSET
         else:
             reasoning_tokens = self.reasoning_tokens
 
-        rejected_prediction_tokens: Union[None, Unset, int]
+        rejected_prediction_tokens: int | None | Unset
         if isinstance(self.rejected_prediction_tokens, Unset):
             rejected_prediction_tokens = UNSET
         else:
@@ -68,39 +70,39 @@ class CompletionTokensDetails:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_accepted_prediction_tokens(data: object) -> Union[None, Unset, int]:
+        def _parse_accepted_prediction_tokens(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         accepted_prediction_tokens = _parse_accepted_prediction_tokens(d.pop("accepted_prediction_tokens", UNSET))
 
-        def _parse_audio_tokens(data: object) -> Union[None, Unset, int]:
+        def _parse_audio_tokens(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         audio_tokens = _parse_audio_tokens(d.pop("audio_tokens", UNSET))
 
-        def _parse_reasoning_tokens(data: object) -> Union[None, Unset, int]:
+        def _parse_reasoning_tokens(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         reasoning_tokens = _parse_reasoning_tokens(d.pop("reasoning_tokens", UNSET))
 
-        def _parse_rejected_prediction_tokens(data: object) -> Union[None, Unset, int]:
+        def _parse_rejected_prediction_tokens(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         rejected_prediction_tokens = _parse_rejected_prediction_tokens(d.pop("rejected_prediction_tokens", UNSET))
 

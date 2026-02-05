@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -12,8 +13,9 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     index_name: str,
     *,
-    path: Union[Unset, str] = "storage",
+    path: str | Unset = "storage",
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["path"] = path
@@ -22,7 +24,9 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": f"/persist/{index_name}",
+        "url": "/persist/{index_name}".format(
+            index_name=quote(str(index_name), safe=""),
+        ),
         "params": params,
     }
 
@@ -30,8 +34,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, HTTPValidationError]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
         response_200 = response.json()
         return response_200
@@ -48,8 +52,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, HTTPValidationError]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,9 +65,9 @@ def _build_response(
 def sync_detailed(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    path: Union[Unset, str] = "storage",
-) -> Response[Union[Any, HTTPValidationError]]:
+    client: AuthenticatedClient | Client,
+    path: str | Unset = "storage",
+) -> Response[Any | HTTPValidationError]:
     r"""Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
@@ -85,14 +89,14 @@ def sync_detailed(
 
     Args:
         index_name (str):
-        path (Union[Unset, str]): Path where the index will be persisted Default: 'storage'.
+        path (str | Unset): Path where the index will be persisted Default: 'storage'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, HTTPValidationError]]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -110,9 +114,9 @@ def sync_detailed(
 def sync(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    path: Union[Unset, str] = "storage",
-) -> Optional[Union[Any, HTTPValidationError]]:
+    client: AuthenticatedClient | Client,
+    path: str | Unset = "storage",
+) -> Any | HTTPValidationError | None:
     r"""Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
@@ -134,14 +138,14 @@ def sync(
 
     Args:
         index_name (str):
-        path (Union[Unset, str]): Path where the index will be persisted Default: 'storage'.
+        path (str | Unset): Path where the index will be persisted Default: 'storage'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, HTTPValidationError]
+        Any | HTTPValidationError
     """
 
     return sync_detailed(
@@ -154,9 +158,9 @@ def sync(
 async def asyncio_detailed(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    path: Union[Unset, str] = "storage",
-) -> Response[Union[Any, HTTPValidationError]]:
+    client: AuthenticatedClient | Client,
+    path: str | Unset = "storage",
+) -> Response[Any | HTTPValidationError]:
     r"""Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
@@ -178,14 +182,14 @@ async def asyncio_detailed(
 
     Args:
         index_name (str):
-        path (Union[Unset, str]): Path where the index will be persisted Default: 'storage'.
+        path (str | Unset): Path where the index will be persisted Default: 'storage'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, HTTPValidationError]]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -201,9 +205,9 @@ async def asyncio_detailed(
 async def asyncio(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    path: Union[Unset, str] = "storage",
-) -> Optional[Union[Any, HTTPValidationError]]:
+    client: AuthenticatedClient | Client,
+    path: str | Unset = "storage",
+) -> Any | HTTPValidationError | None:
     r"""Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
@@ -225,14 +229,14 @@ async def asyncio(
 
     Args:
         index_name (str):
-        path (Union[Unset, str]): Path where the index will be persisted Default: 'storage'.
+        path (str | Unset): Path where the index will be persisted Default: 'storage'.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, HTTPValidationError]
+        Any | HTTPValidationError
     """
 
     return (

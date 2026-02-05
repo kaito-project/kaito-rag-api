@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,17 +20,17 @@ class Document:
     """
     Attributes:
         text (str):
-        doc_id (Union[Unset, str]):  Default: ''.
-        metadata (Union['DocumentMetadataType0', None, Unset]):
-        hash_value (Union[None, Unset, str]):
-        is_truncated (Union[Unset, bool]):  Default: False.
+        doc_id (str | Unset):  Default: ''.
+        metadata (DocumentMetadataType0 | None | Unset):
+        hash_value (None | str | Unset):
+        is_truncated (bool | Unset):  Default: False.
     """
 
     text: str
-    doc_id: Union[Unset, str] = ""
-    metadata: Union["DocumentMetadataType0", None, Unset] = UNSET
-    hash_value: Union[None, Unset, str] = UNSET
-    is_truncated: Union[Unset, bool] = False
+    doc_id: str | Unset = ""
+    metadata: DocumentMetadataType0 | None | Unset = UNSET
+    hash_value: None | str | Unset = UNSET
+    is_truncated: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -38,7 +40,7 @@ class Document:
 
         doc_id = self.doc_id
 
-        metadata: Union[None, Unset, dict[str, Any]]
+        metadata: dict[str, Any] | None | Unset
         if isinstance(self.metadata, Unset):
             metadata = UNSET
         elif isinstance(self.metadata, DocumentMetadataType0):
@@ -46,7 +48,7 @@ class Document:
         else:
             metadata = self.metadata
 
-        hash_value: Union[None, Unset, str]
+        hash_value: None | str | Unset
         if isinstance(self.hash_value, Unset):
             hash_value = UNSET
         else:
@@ -81,7 +83,7 @@ class Document:
 
         doc_id = d.pop("doc_id", UNSET)
 
-        def _parse_metadata(data: object) -> Union["DocumentMetadataType0", None, Unset]:
+        def _parse_metadata(data: object) -> DocumentMetadataType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -92,18 +94,18 @@ class Document:
                 metadata_type_0 = DocumentMetadataType0.from_dict(data)
 
                 return metadata_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["DocumentMetadataType0", None, Unset], data)
+            return cast(DocumentMetadataType0 | None | Unset, data)
 
         metadata = _parse_metadata(d.pop("metadata", UNSET))
 
-        def _parse_hash_value(data: object) -> Union[None, Unset, str]:
+        def _parse_hash_value(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         hash_value = _parse_hash_value(d.pop("hash_value", UNSET))
 

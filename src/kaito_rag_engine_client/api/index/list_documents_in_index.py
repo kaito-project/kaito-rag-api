@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,25 +14,26 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     index_name: str,
     *,
-    limit: Union[Unset, int] = 10,
-    offset: Union[Unset, int] = 0,
-    max_text_length: Union[None, Unset, int] = 1000,
-    metadata_filter: Union[None, Unset, str] = UNSET,
+    limit: int | Unset = 10,
+    offset: int | Unset = 0,
+    max_text_length: int | None | Unset = 1000,
+    metadata_filter: None | str | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["limit"] = limit
 
     params["offset"] = offset
 
-    json_max_text_length: Union[None, Unset, int]
+    json_max_text_length: int | None | Unset
     if isinstance(max_text_length, Unset):
         json_max_text_length = UNSET
     else:
         json_max_text_length = max_text_length
     params["max_text_length"] = json_max_text_length
 
-    json_metadata_filter: Union[None, Unset, str]
+    json_metadata_filter: None | str | Unset
     if isinstance(metadata_filter, Unset):
         json_metadata_filter = UNSET
     else:
@@ -42,7 +44,9 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/indexes/{index_name}/documents",
+        "url": "/indexes/{index_name}/documents".format(
+            index_name=quote(str(index_name), safe=""),
+        ),
         "params": params,
     }
 
@@ -50,8 +54,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[HTTPValidationError, ListDocumentsResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> HTTPValidationError | ListDocumentsResponse | None:
     if response.status_code == 200:
         response_200 = ListDocumentsResponse.from_dict(response.json())
 
@@ -69,8 +73,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[HTTPValidationError, ListDocumentsResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[HTTPValidationError | ListDocumentsResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -82,12 +86,12 @@ def _build_response(
 def sync_detailed(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    limit: Union[Unset, int] = 10,
-    offset: Union[Unset, int] = 0,
-    max_text_length: Union[None, Unset, int] = 1000,
-    metadata_filter: Union[None, Unset, str] = UNSET,
-) -> Response[Union[HTTPValidationError, ListDocumentsResponse]]:
+    client: AuthenticatedClient | Client,
+    limit: int | Unset = 10,
+    offset: int | Unset = 0,
+    max_text_length: int | None | Unset = 1000,
+    metadata_filter: None | str | Unset = UNSET,
+) -> Response[HTTPValidationError | ListDocumentsResponse]:
     r"""List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
@@ -120,11 +124,11 @@ def sync_detailed(
 
     Args:
         index_name (str):
-        limit (Union[Unset, int]): Maximum number of documents to return Default: 10.
-        offset (Union[Unset, int]): Starting point for the document list Default: 0.
-        max_text_length (Union[None, Unset, int]): Maximum text length to return **per document**.
-            This does not impose a limit on the total length of all documents returned. Default: 1000.
-        metadata_filter (Union[None, Unset, str]): Optional metadata filter to apply when listing
+        limit (int | Unset): Maximum number of documents to return Default: 10.
+        offset (int | Unset): Starting point for the document list Default: 0.
+        max_text_length (int | None | Unset): Maximum text length to return **per document**. This
+            does not impose a limit on the total length of all documents returned. Default: 1000.
+        metadata_filter (None | str | Unset): Optional metadata filter to apply when listing
             documents. This should be a dictionary with key-value pairs to match against document
             metadata.
 
@@ -133,7 +137,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[HTTPValidationError, ListDocumentsResponse]]
+        Response[HTTPValidationError | ListDocumentsResponse]
     """
 
     kwargs = _get_kwargs(
@@ -154,12 +158,12 @@ def sync_detailed(
 def sync(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    limit: Union[Unset, int] = 10,
-    offset: Union[Unset, int] = 0,
-    max_text_length: Union[None, Unset, int] = 1000,
-    metadata_filter: Union[None, Unset, str] = UNSET,
-) -> Optional[Union[HTTPValidationError, ListDocumentsResponse]]:
+    client: AuthenticatedClient | Client,
+    limit: int | Unset = 10,
+    offset: int | Unset = 0,
+    max_text_length: int | None | Unset = 1000,
+    metadata_filter: None | str | Unset = UNSET,
+) -> HTTPValidationError | ListDocumentsResponse | None:
     r"""List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
@@ -192,11 +196,11 @@ def sync(
 
     Args:
         index_name (str):
-        limit (Union[Unset, int]): Maximum number of documents to return Default: 10.
-        offset (Union[Unset, int]): Starting point for the document list Default: 0.
-        max_text_length (Union[None, Unset, int]): Maximum text length to return **per document**.
-            This does not impose a limit on the total length of all documents returned. Default: 1000.
-        metadata_filter (Union[None, Unset, str]): Optional metadata filter to apply when listing
+        limit (int | Unset): Maximum number of documents to return Default: 10.
+        offset (int | Unset): Starting point for the document list Default: 0.
+        max_text_length (int | None | Unset): Maximum text length to return **per document**. This
+            does not impose a limit on the total length of all documents returned. Default: 1000.
+        metadata_filter (None | str | Unset): Optional metadata filter to apply when listing
             documents. This should be a dictionary with key-value pairs to match against document
             metadata.
 
@@ -205,7 +209,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[HTTPValidationError, ListDocumentsResponse]
+        HTTPValidationError | ListDocumentsResponse
     """
 
     return sync_detailed(
@@ -221,12 +225,12 @@ def sync(
 async def asyncio_detailed(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    limit: Union[Unset, int] = 10,
-    offset: Union[Unset, int] = 0,
-    max_text_length: Union[None, Unset, int] = 1000,
-    metadata_filter: Union[None, Unset, str] = UNSET,
-) -> Response[Union[HTTPValidationError, ListDocumentsResponse]]:
+    client: AuthenticatedClient | Client,
+    limit: int | Unset = 10,
+    offset: int | Unset = 0,
+    max_text_length: int | None | Unset = 1000,
+    metadata_filter: None | str | Unset = UNSET,
+) -> Response[HTTPValidationError | ListDocumentsResponse]:
     r"""List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
@@ -259,11 +263,11 @@ async def asyncio_detailed(
 
     Args:
         index_name (str):
-        limit (Union[Unset, int]): Maximum number of documents to return Default: 10.
-        offset (Union[Unset, int]): Starting point for the document list Default: 0.
-        max_text_length (Union[None, Unset, int]): Maximum text length to return **per document**.
-            This does not impose a limit on the total length of all documents returned. Default: 1000.
-        metadata_filter (Union[None, Unset, str]): Optional metadata filter to apply when listing
+        limit (int | Unset): Maximum number of documents to return Default: 10.
+        offset (int | Unset): Starting point for the document list Default: 0.
+        max_text_length (int | None | Unset): Maximum text length to return **per document**. This
+            does not impose a limit on the total length of all documents returned. Default: 1000.
+        metadata_filter (None | str | Unset): Optional metadata filter to apply when listing
             documents. This should be a dictionary with key-value pairs to match against document
             metadata.
 
@@ -272,7 +276,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[HTTPValidationError, ListDocumentsResponse]]
+        Response[HTTPValidationError | ListDocumentsResponse]
     """
 
     kwargs = _get_kwargs(
@@ -291,12 +295,12 @@ async def asyncio_detailed(
 async def asyncio(
     index_name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    limit: Union[Unset, int] = 10,
-    offset: Union[Unset, int] = 0,
-    max_text_length: Union[None, Unset, int] = 1000,
-    metadata_filter: Union[None, Unset, str] = UNSET,
-) -> Optional[Union[HTTPValidationError, ListDocumentsResponse]]:
+    client: AuthenticatedClient | Client,
+    limit: int | Unset = 10,
+    offset: int | Unset = 0,
+    max_text_length: int | None | Unset = 1000,
+    metadata_filter: None | str | Unset = UNSET,
+) -> HTTPValidationError | ListDocumentsResponse | None:
     r"""List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
@@ -329,11 +333,11 @@ async def asyncio(
 
     Args:
         index_name (str):
-        limit (Union[Unset, int]): Maximum number of documents to return Default: 10.
-        offset (Union[Unset, int]): Starting point for the document list Default: 0.
-        max_text_length (Union[None, Unset, int]): Maximum text length to return **per document**.
-            This does not impose a limit on the total length of all documents returned. Default: 1000.
-        metadata_filter (Union[None, Unset, str]): Optional metadata filter to apply when listing
+        limit (int | Unset): Maximum number of documents to return Default: 10.
+        offset (int | Unset): Starting point for the document list Default: 0.
+        max_text_length (int | None | Unset): Maximum text length to return **per document**. This
+            does not impose a limit on the total length of all documents returned. Default: 1000.
+        metadata_filter (None | str | Unset): Optional metadata filter to apply when listing
             documents. This should be a dictionary with key-value pairs to match against document
             metadata.
 
@@ -342,7 +346,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[HTTPValidationError, ListDocumentsResponse]
+        HTTPValidationError | ListDocumentsResponse
     """
 
     return (

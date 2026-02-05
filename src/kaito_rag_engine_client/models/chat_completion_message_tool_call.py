@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
@@ -21,7 +23,7 @@ class ChatCompletionMessageToolCall:
     """
 
     id: str
-    function: "Function"
+    function: Function
     type_: Literal["function"]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 

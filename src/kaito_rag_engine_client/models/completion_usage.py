@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,15 +23,15 @@ class CompletionUsage:
         completion_tokens (int):
         prompt_tokens (int):
         total_tokens (int):
-        completion_tokens_details (Union['CompletionTokensDetails', None, Unset]):
-        prompt_tokens_details (Union['PromptTokensDetails', None, Unset]):
+        completion_tokens_details (CompletionTokensDetails | None | Unset):
+        prompt_tokens_details (None | PromptTokensDetails | Unset):
     """
 
     completion_tokens: int
     prompt_tokens: int
     total_tokens: int
-    completion_tokens_details: Union["CompletionTokensDetails", None, Unset] = UNSET
-    prompt_tokens_details: Union["PromptTokensDetails", None, Unset] = UNSET
+    completion_tokens_details: CompletionTokensDetails | None | Unset = UNSET
+    prompt_tokens_details: None | PromptTokensDetails | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,7 +44,7 @@ class CompletionUsage:
 
         total_tokens = self.total_tokens
 
-        completion_tokens_details: Union[None, Unset, dict[str, Any]]
+        completion_tokens_details: dict[str, Any] | None | Unset
         if isinstance(self.completion_tokens_details, Unset):
             completion_tokens_details = UNSET
         elif isinstance(self.completion_tokens_details, CompletionTokensDetails):
@@ -50,7 +52,7 @@ class CompletionUsage:
         else:
             completion_tokens_details = self.completion_tokens_details
 
-        prompt_tokens_details: Union[None, Unset, dict[str, Any]]
+        prompt_tokens_details: dict[str, Any] | None | Unset
         if isinstance(self.prompt_tokens_details, Unset):
             prompt_tokens_details = UNSET
         elif isinstance(self.prompt_tokens_details, PromptTokensDetails):
@@ -86,7 +88,7 @@ class CompletionUsage:
 
         total_tokens = d.pop("total_tokens")
 
-        def _parse_completion_tokens_details(data: object) -> Union["CompletionTokensDetails", None, Unset]:
+        def _parse_completion_tokens_details(data: object) -> CompletionTokensDetails | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -97,13 +99,13 @@ class CompletionUsage:
                 completion_tokens_details_type_0 = CompletionTokensDetails.from_dict(data)
 
                 return completion_tokens_details_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["CompletionTokensDetails", None, Unset], data)
+            return cast(CompletionTokensDetails | None | Unset, data)
 
         completion_tokens_details = _parse_completion_tokens_details(d.pop("completion_tokens_details", UNSET))
 
-        def _parse_prompt_tokens_details(data: object) -> Union["PromptTokensDetails", None, Unset]:
+        def _parse_prompt_tokens_details(data: object) -> None | PromptTokensDetails | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -114,9 +116,9 @@ class CompletionUsage:
                 prompt_tokens_details_type_0 = PromptTokensDetails.from_dict(data)
 
                 return prompt_tokens_details_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["PromptTokensDetails", None, Unset], data)
+            return cast(None | PromptTokensDetails | Unset, data)
 
         prompt_tokens_details = _parse_prompt_tokens_details(d.pop("prompt_tokens_details", UNSET))
 

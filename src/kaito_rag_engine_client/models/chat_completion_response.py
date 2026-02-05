@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,25 +23,25 @@ class ChatCompletionResponse:
     """
     Attributes:
         id (str):
-        choices (list['Choice']):
+        choices (list[Choice]):
         created (int):
         model (str):
         object_ (Literal['chat.completion']):
-        service_tier (Union[ChatCompletionResponseServiceTierType0, None, Unset]):
-        system_fingerprint (Union[None, Unset, str]):
-        usage (Union['CompletionUsage', None, Unset]):
-        source_nodes (Union[None, Unset, list['NodeWithScore']]):
+        service_tier (ChatCompletionResponseServiceTierType0 | None | Unset):
+        system_fingerprint (None | str | Unset):
+        usage (CompletionUsage | None | Unset):
+        source_nodes (list[NodeWithScore] | None | Unset):
     """
 
     id: str
-    choices: list["Choice"]
+    choices: list[Choice]
     created: int
     model: str
     object_: Literal["chat.completion"]
-    service_tier: Union[ChatCompletionResponseServiceTierType0, None, Unset] = UNSET
-    system_fingerprint: Union[None, Unset, str] = UNSET
-    usage: Union["CompletionUsage", None, Unset] = UNSET
-    source_nodes: Union[None, Unset, list["NodeWithScore"]] = UNSET
+    service_tier: ChatCompletionResponseServiceTierType0 | None | Unset = UNSET
+    system_fingerprint: None | str | Unset = UNSET
+    usage: CompletionUsage | None | Unset = UNSET
+    source_nodes: list[NodeWithScore] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -58,7 +60,7 @@ class ChatCompletionResponse:
 
         object_ = self.object_
 
-        service_tier: Union[None, Unset, str]
+        service_tier: None | str | Unset
         if isinstance(self.service_tier, Unset):
             service_tier = UNSET
         elif isinstance(self.service_tier, ChatCompletionResponseServiceTierType0):
@@ -66,13 +68,13 @@ class ChatCompletionResponse:
         else:
             service_tier = self.service_tier
 
-        system_fingerprint: Union[None, Unset, str]
+        system_fingerprint: None | str | Unset
         if isinstance(self.system_fingerprint, Unset):
             system_fingerprint = UNSET
         else:
             system_fingerprint = self.system_fingerprint
 
-        usage: Union[None, Unset, dict[str, Any]]
+        usage: dict[str, Any] | None | Unset
         if isinstance(self.usage, Unset):
             usage = UNSET
         elif isinstance(self.usage, CompletionUsage):
@@ -80,7 +82,7 @@ class ChatCompletionResponse:
         else:
             usage = self.usage
 
-        source_nodes: Union[None, Unset, list[dict[str, Any]]]
+        source_nodes: list[dict[str, Any]] | None | Unset
         if isinstance(self.source_nodes, Unset):
             source_nodes = UNSET
         elif isinstance(self.source_nodes, list):
@@ -138,7 +140,7 @@ class ChatCompletionResponse:
         if object_ != "chat.completion":
             raise ValueError(f"object must match const 'chat.completion', got '{object_}'")
 
-        def _parse_service_tier(data: object) -> Union[ChatCompletionResponseServiceTierType0, None, Unset]:
+        def _parse_service_tier(data: object) -> ChatCompletionResponseServiceTierType0 | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -149,22 +151,22 @@ class ChatCompletionResponse:
                 service_tier_type_0 = ChatCompletionResponseServiceTierType0(data)
 
                 return service_tier_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[ChatCompletionResponseServiceTierType0, None, Unset], data)
+            return cast(ChatCompletionResponseServiceTierType0 | None | Unset, data)
 
         service_tier = _parse_service_tier(d.pop("service_tier", UNSET))
 
-        def _parse_system_fingerprint(data: object) -> Union[None, Unset, str]:
+        def _parse_system_fingerprint(data: object) -> None | str | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, str], data)
+            return cast(None | str | Unset, data)
 
         system_fingerprint = _parse_system_fingerprint(d.pop("system_fingerprint", UNSET))
 
-        def _parse_usage(data: object) -> Union["CompletionUsage", None, Unset]:
+        def _parse_usage(data: object) -> CompletionUsage | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -175,13 +177,13 @@ class ChatCompletionResponse:
                 usage_type_0 = CompletionUsage.from_dict(data)
 
                 return usage_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union["CompletionUsage", None, Unset], data)
+            return cast(CompletionUsage | None | Unset, data)
 
         usage = _parse_usage(d.pop("usage", UNSET))
 
-        def _parse_source_nodes(data: object) -> Union[None, Unset, list["NodeWithScore"]]:
+        def _parse_source_nodes(data: object) -> list[NodeWithScore] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -197,9 +199,9 @@ class ChatCompletionResponse:
                     source_nodes_type_0.append(source_nodes_type_0_item)
 
                 return source_nodes_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list["NodeWithScore"]], data)
+            return cast(list[NodeWithScore] | None | Unset, data)
 
         source_nodes = _parse_source_nodes(d.pop("source_nodes", UNSET))
 
