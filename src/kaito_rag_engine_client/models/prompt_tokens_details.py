@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,22 +15,22 @@ T = TypeVar("T", bound="PromptTokensDetails")
 class PromptTokensDetails:
     """
     Attributes:
-        audio_tokens (Union[None, Unset, int]):
-        cached_tokens (Union[None, Unset, int]):
+        audio_tokens (int | None | Unset):
+        cached_tokens (int | None | Unset):
     """
 
-    audio_tokens: Union[None, Unset, int] = UNSET
-    cached_tokens: Union[None, Unset, int] = UNSET
+    audio_tokens: int | None | Unset = UNSET
+    cached_tokens: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        audio_tokens: Union[None, Unset, int]
+        audio_tokens: int | None | Unset
         if isinstance(self.audio_tokens, Unset):
             audio_tokens = UNSET
         else:
             audio_tokens = self.audio_tokens
 
-        cached_tokens: Union[None, Unset, int]
+        cached_tokens: int | None | Unset
         if isinstance(self.cached_tokens, Unset):
             cached_tokens = UNSET
         else:
@@ -48,21 +50,21 @@ class PromptTokensDetails:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
 
-        def _parse_audio_tokens(data: object) -> Union[None, Unset, int]:
+        def _parse_audio_tokens(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         audio_tokens = _parse_audio_tokens(d.pop("audio_tokens", UNSET))
 
-        def _parse_cached_tokens(data: object) -> Union[None, Unset, int]:
+        def _parse_cached_tokens(data: object) -> int | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            return cast(Union[None, Unset, int], data)
+            return cast(int | None | Unset, data)
 
         cached_tokens = _parse_cached_tokens(d.pop("cached_tokens", UNSET))
 

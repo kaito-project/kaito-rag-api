@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union, cast
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,12 +17,12 @@ class TopLogprob:
     Attributes:
         token (str):
         logprob (float):
-        bytes_ (Union[None, Unset, list[int]]):
+        bytes_ (list[int] | None | Unset):
     """
 
     token: str
     logprob: float
-    bytes_: Union[None, Unset, list[int]] = UNSET
+    bytes_: list[int] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -28,7 +30,7 @@ class TopLogprob:
 
         logprob = self.logprob
 
-        bytes_: Union[None, Unset, list[int]]
+        bytes_: list[int] | None | Unset
         if isinstance(self.bytes_, Unset):
             bytes_ = UNSET
         elif isinstance(self.bytes_, list):
@@ -57,7 +59,7 @@ class TopLogprob:
 
         logprob = d.pop("logprob")
 
-        def _parse_bytes_(data: object) -> Union[None, Unset, list[int]]:
+        def _parse_bytes_(data: object) -> list[int] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -68,9 +70,9 @@ class TopLogprob:
                 bytes_type_0 = cast(list[int], data)
 
                 return bytes_type_0
-            except:  # noqa: E722
+            except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(Union[None, Unset, list[int]], data)
+            return cast(list[int] | None | Unset, data)
 
         bytes_ = _parse_bytes_(d.pop("bytes", UNSET))
 

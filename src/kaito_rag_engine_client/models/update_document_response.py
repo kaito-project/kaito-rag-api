@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
@@ -15,14 +17,14 @@ T = TypeVar("T", bound="UpdateDocumentResponse")
 class UpdateDocumentResponse:
     """
     Attributes:
-        updated_documents (list['Document']):
-        unchanged_documents (list['Document']):
-        not_found_documents (list['Document']):
+        updated_documents (list[Document]):
+        unchanged_documents (list[Document]):
+        not_found_documents (list[Document]):
     """
 
-    updated_documents: list["Document"]
-    unchanged_documents: list["Document"]
-    not_found_documents: list["Document"]
+    updated_documents: list[Document]
+    unchanged_documents: list[Document]
+    not_found_documents: list[Document]
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

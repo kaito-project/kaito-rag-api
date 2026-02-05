@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any, TypeVar
 
@@ -15,12 +17,12 @@ T = TypeVar("T", bound="ListDocumentsResponse")
 class ListDocumentsResponse:
     """
     Attributes:
-        documents (list['Document']):
+        documents (list[Document]):
         count (int):
         total_items (int):
     """
 
-    documents: list["Document"]
+    documents: list[Document]
     count: int
     total_items: int
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
