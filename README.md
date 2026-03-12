@@ -1,7 +1,7 @@
 # KAITO RAG Engine Client
 
-[![PyPI version](https://img.shields.io/pypi/v/kaito-rag-client)](https://pypi.org/project/kaito-rag-client/)
-[![Python Support](https://img.shields.io/pypi/pyversions/kaito-rag-client)](https://pypi.org/project/kaito-rag-client/)
+[![PyPI version](https://img.shields.io/pypi/v/kaito-rag-engine-client)](https://pypi.org/project/kaito-rag-engine-client/)
+[![Python Support](https://img.shields.io/pypi/pyversions/kaito-rag-engine-client)](https://pypi.org/project/kaito-rag-engine-client/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A Python client library for interacting with the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag-api/) API. This client is generated using the [openapi-python-client](https://github.com/openapi-generators/openapi-python-client) project against the [KAITO RAGEngine](https://kaito-project.github.io/kaito/docs/rag/) OpenAPI spec.
@@ -40,8 +40,8 @@ For sync usage, you need to create a Client and pass it into the desired api's a
 ```python
 from kaito_rag_engine_client import Client
 from kaito_rag_engine_client.api.chat import chat
-from kaito_rag_engine_client.models import IndexRequest, Document, UpdateDocumentRequest, DeleteDocumentRequest, ChatRequest
-from kaito_rag_engine_client.api.index import list_indexes, create_index, delete_index, list_documents_in_index, delete_documents_in_index, update_documents_in_index, persist_index, load_index
+from kaito_rag_engine_client.models import IndexRequest, Document, UpdateDocumentRequest, DeleteDocumentRequest, ChatRequest, RetrieveRequest
+from kaito_rag_engine_client.api.index import list_indexes, create_index, delete_index, list_documents_in_index, delete_documents_in_index, update_documents_in_index, persist_index, load_index, retrieve_index
 
 client = Client(base_url="http://api.example.com")
 
@@ -111,6 +111,14 @@ chat_resp = chat.sync(client=client, body=ChatRequest.from_dict({
         "messages": [{"role": "user", "content": "What can you tell me about AI?"}],
         "temperature": 0.7,
         "max_tokens": 100,
+    }
+))
+
+# Retrieve Request
+retrieve_resp = retrieve_index.sync(client=client, body=RetrieveRequest.from_dict({
+        "index_name": "test_index",
+        "query": "what can you tell me about AI?",
+        "max_node_count": 5,
     }
 ))
 ```
