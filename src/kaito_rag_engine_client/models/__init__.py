@@ -27,6 +27,9 @@ from .list_documents_response import ListDocumentsResponse
 from .node_with_score import NodeWithScore
 from .node_with_score_metadata_type_0 import NodeWithScoreMetadataType0
 from .prompt_tokens_details import PromptTokensDetails
+from .retrieve_request import RetrieveRequest
+from .retrieve_request_metadata_filter_type_0 import RetrieveRequestMetadataFilterType0
+from .retrieve_response import RetrieveResponse
 from .top_logprob import TopLogprob
 from .update_document_request import UpdateDocumentRequest
 from .update_document_response import UpdateDocumentResponse
@@ -60,6 +63,9 @@ __all__ = (
     "NodeWithScore",
     "NodeWithScoreMetadataType0",
     "PromptTokensDetails",
+    "RetrieveRequest",
+    "RetrieveRequestMetadataFilterType0",
+    "RetrieveResponse",
     "TopLogprob",
     "UpdateDocumentRequest",
     "UpdateDocumentResponse",
