@@ -128,8 +128,8 @@ Or do the same thing with an async version:
 ```python
 from kaito_rag_engine_client import Client
 from kaito_rag_engine_client.api.chat import chat
-from kaito_rag_engine_client.models import IndexRequest, Document, UpdateDocumentRequest, DeleteDocumentRequest, ChatRequest
-from kaito_rag_engine_client.api.index import list_indexes, create_index, delete_index, list_documents_in_index, delete_documents_in_index, update_documents_in_index, persist_index, load_index
+from kaito_rag_engine_client.models import IndexRequest, Document, UpdateDocumentRequest, DeleteDocumentRequest, ChatRequest, RetrieveRequest
+from kaito_rag_engine_client.api.index import list_indexes, create_index, delete_index, list_documents_in_index, delete_documents_in_index, update_documents_in_index, persist_index, load_index, retrieve_index
 
 client = Client(base_url="http://api.example.com")
 
@@ -199,6 +199,14 @@ chat_resp = await chat.asyncio(client=client, body=ChatRequest.from_dict({
         "messages": [{"role": "user", "content": "What can you tell me about AI?"}],
         "temperature": 0.7,
         "max_tokens": 100,
+    }
+))
+
+# Retrieve Request
+retrieve_resp = await retrieve_index.asyncio(client=client, body=RetrieveRequest.from_dict({
+        "index_name": "test_index",
+        "query": "what can you tell me about AI?",
+        "max_node_count": 5,
     }
 ))
 ```
