@@ -45,7 +45,7 @@ class ChatCompletionResponse:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.completion_usage import CompletionUsage
+        from ..models.completion_usage import CompletionUsage  # noqa: PLC0415
 
         id = self.id
 
@@ -118,9 +118,9 @@ class ChatCompletionResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.choice import Choice
-        from ..models.completion_usage import CompletionUsage
-        from ..models.node_with_score import NodeWithScore
+        from ..models.choice import Choice  # noqa: PLC0415
+        from ..models.completion_usage import CompletionUsage  # noqa: PLC0415
+        from ..models.node_with_score import NodeWithScore  # noqa: PLC0415
 
         d = dict(src_dict)
         id = d.pop("id")

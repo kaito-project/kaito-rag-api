@@ -58,7 +58,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[Any | HTTPValidationError]:
-    r"""Delete the Index
+    """Delete the Index
 
      Delete an existing index
 
@@ -70,7 +70,7 @@ def sync_detailed(
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully deleted index example_index.\"
+          "message": "Successfully deleted index example_index."
         }
         ```
 
@@ -101,7 +101,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> Any | HTTPValidationError | None:
-    r"""Delete the Index
+    """Delete the Index
 
      Delete an existing index
 
@@ -113,7 +113,7 @@ def sync(
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully deleted index example_index.\"
+          "message": "Successfully deleted index example_index."
         }
         ```
 
@@ -139,7 +139,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[Any | HTTPValidationError]:
-    r"""Delete the Index
+    """Delete the Index
 
      Delete an existing index
 
@@ -151,7 +151,7 @@ async def asyncio_detailed(
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully deleted index example_index.\"
+          "message": "Successfully deleted index example_index."
         }
         ```
 
@@ -180,7 +180,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> Any | HTTPValidationError | None:
-    r"""Delete the Index
+    """Delete the Index
 
      Delete an existing index
 
@@ -192,7 +192,7 @@ async def asyncio(
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully deleted index example_index.\"
+          "message": "Successfully deleted index example_index."
         }
         ```
 

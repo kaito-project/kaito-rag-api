@@ -70,21 +70,21 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
 ) -> Response[DeleteDocumentResponse | HTTPValidationError]:
-    r"""Delete documents in an Index
+    """Delete documents in an Index
 
      Delete document in an Index by their ids.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents/delete
-        {\"doc_ids\": [\"doc_id_1\", \"doc_id_2\", \"doc_id_3\"]}
+        {"doc_ids": ["doc_id_1", "doc_id_2", "doc_id_3"]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"deleted_doc_ids\": [\"doc_id_1\", \"doc_id_2\"],
-            \"not_found_doc_ids\": [\"doc_id_3\"]
+            "deleted_doc_ids": ["doc_id_1", "doc_id_2"],
+            "not_found_doc_ids": ["doc_id_3"]
         },
         ```
 
@@ -118,21 +118,21 @@ def sync(
     client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
 ) -> DeleteDocumentResponse | HTTPValidationError | None:
-    r"""Delete documents in an Index
+    """Delete documents in an Index
 
      Delete document in an Index by their ids.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents/delete
-        {\"doc_ids\": [\"doc_id_1\", \"doc_id_2\", \"doc_id_3\"]}
+        {"doc_ids": ["doc_id_1", "doc_id_2", "doc_id_3"]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"deleted_doc_ids\": [\"doc_id_1\", \"doc_id_2\"],
-            \"not_found_doc_ids\": [\"doc_id_3\"]
+            "deleted_doc_ids": ["doc_id_1", "doc_id_2"],
+            "not_found_doc_ids": ["doc_id_3"]
         },
         ```
 
@@ -161,21 +161,21 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
 ) -> Response[DeleteDocumentResponse | HTTPValidationError]:
-    r"""Delete documents in an Index
+    """Delete documents in an Index
 
      Delete document in an Index by their ids.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents/delete
-        {\"doc_ids\": [\"doc_id_1\", \"doc_id_2\", \"doc_id_3\"]}
+        {"doc_ids": ["doc_id_1", "doc_id_2", "doc_id_3"]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"deleted_doc_ids\": [\"doc_id_1\", \"doc_id_2\"],
-            \"not_found_doc_ids\": [\"doc_id_3\"]
+            "deleted_doc_ids": ["doc_id_1", "doc_id_2"],
+            "not_found_doc_ids": ["doc_id_3"]
         },
         ```
 
@@ -207,21 +207,21 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: DeleteDocumentRequest,
 ) -> DeleteDocumentResponse | HTTPValidationError | None:
-    r"""Delete documents in an Index
+    """Delete documents in an Index
 
      Delete document in an Index by their ids.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents/delete
-        {\"doc_ids\": [\"doc_id_1\", \"doc_id_2\", \"doc_id_3\"]}
+        {"doc_ids": ["doc_id_1", "doc_id_2", "doc_id_3"]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"deleted_doc_ids\": [\"doc_id_1\", \"doc_id_2\"],
-            \"not_found_doc_ids\": [\"doc_id_3\"]
+            "deleted_doc_ids": ["doc_id_1", "doc_id_2"],
+            "not_found_doc_ids": ["doc_id_3"]
         },
         ```
 

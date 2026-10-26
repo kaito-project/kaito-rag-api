@@ -64,7 +64,7 @@ class ChoiceLogprobs:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.chat_completion_token_logprob import ChatCompletionTokenLogprob
+        from ..models.chat_completion_token_logprob import ChatCompletionTokenLogprob  # noqa: PLC0415
 
         d = dict(src_dict)
 

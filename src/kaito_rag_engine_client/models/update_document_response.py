@@ -57,7 +57,7 @@ class UpdateDocumentResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.document import Document
+        from ..models.document import Document  # noqa: PLC0415
 
         d = dict(src_dict)
         updated_documents = []

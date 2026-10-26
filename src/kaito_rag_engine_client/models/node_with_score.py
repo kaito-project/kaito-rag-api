@@ -23,6 +23,9 @@ class NodeWithScore:
         node_id (str):
         text (str):
         score (float):
+        dense_score (float | None | Unset):
+        sparse_score (float | None | Unset):
+        source (None | str | Unset):
         metadata (NodeWithScoreMetadataType0 | None | Unset):
     """
 
@@ -30,11 +33,14 @@ class NodeWithScore:
     node_id: str
     text: str
     score: float
+    dense_score: float | None | Unset = UNSET
+    sparse_score: float | None | Unset = UNSET
+    source: None | str | Unset = UNSET
     metadata: NodeWithScoreMetadataType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.node_with_score_metadata_type_0 import NodeWithScoreMetadataType0
+        from ..models.node_with_score_metadata_type_0 import NodeWithScoreMetadataType0  # noqa: PLC0415
 
         doc_id = self.doc_id
 
@@ -43,6 +49,24 @@ class NodeWithScore:
         text = self.text
 
         score = self.score
+
+        dense_score: float | None | Unset
+        if isinstance(self.dense_score, Unset):
+            dense_score = UNSET
+        else:
+            dense_score = self.dense_score
+
+        sparse_score: float | None | Unset
+        if isinstance(self.sparse_score, Unset):
+            sparse_score = UNSET
+        else:
+            sparse_score = self.sparse_score
+
+        source: None | str | Unset
+        if isinstance(self.source, Unset):
+            source = UNSET
+        else:
+            source = self.source
 
         metadata: dict[str, Any] | None | Unset
         if isinstance(self.metadata, Unset):
@@ -62,6 +86,12 @@ class NodeWithScore:
                 "score": score,
             }
         )
+        if dense_score is not UNSET:
+            field_dict["dense_score"] = dense_score
+        if sparse_score is not UNSET:
+            field_dict["sparse_score"] = sparse_score
+        if source is not UNSET:
+            field_dict["source"] = source
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
 
@@ -69,7 +99,7 @@ class NodeWithScore:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.node_with_score_metadata_type_0 import NodeWithScoreMetadataType0
+        from ..models.node_with_score_metadata_type_0 import NodeWithScoreMetadataType0  # noqa: PLC0415
 
         d = dict(src_dict)
         doc_id = d.pop("doc_id")
@@ -79,6 +109,33 @@ class NodeWithScore:
         text = d.pop("text")
 
         score = d.pop("score")
+
+        def _parse_dense_score(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        dense_score = _parse_dense_score(d.pop("dense_score", UNSET))
+
+        def _parse_sparse_score(data: object) -> float | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(float | None | Unset, data)
+
+        sparse_score = _parse_sparse_score(d.pop("sparse_score", UNSET))
+
+        def _parse_source(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source = _parse_source(d.pop("source", UNSET))
 
         def _parse_metadata(data: object) -> NodeWithScoreMetadataType0 | None | Unset:
             if data is None:
@@ -102,6 +159,9 @@ class NodeWithScore:
             node_id=node_id,
             text=text,
             score=score,
+            dense_score=dense_score,
+            sparse_score=sparse_score,
+            source=source,
             metadata=metadata,
         )
 

@@ -43,15 +43,15 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[list[str]]:
-    r"""List All Indexes
+    """List All Indexes
 
      Retrieve the names of all available indexes.
 
         ## Response Example:
         ```json
         [
-          \"example_index\",
-          \"test_index\"
+          "example_index",
+          "test_index"
         ]
         ```
 
@@ -76,15 +76,15 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> list[str] | None:
-    r"""List All Indexes
+    """List All Indexes
 
      Retrieve the names of all available indexes.
 
         ## Response Example:
         ```json
         [
-          \"example_index\",
-          \"test_index\"
+          "example_index",
+          "test_index"
         ]
         ```
 
@@ -105,15 +105,15 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[list[str]]:
-    r"""List All Indexes
+    """List All Indexes
 
      Retrieve the names of all available indexes.
 
         ## Response Example:
         ```json
         [
-          \"example_index\",
-          \"test_index\"
+          "example_index",
+          "test_index"
         ]
         ```
 
@@ -136,15 +136,15 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> list[str] | None:
-    r"""List All Indexes
+    """List All Indexes
 
      Retrieve the names of all available indexes.
 
         ## Response Example:
         ```json
         [
-          \"example_index\",
-          \"test_index\"
+          "example_index",
+          "test_index"
         ]
         ```
 

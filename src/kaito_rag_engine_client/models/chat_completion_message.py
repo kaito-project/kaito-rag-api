@@ -11,7 +11,8 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.annotation import Annotation
     from ..models.chat_completion_audio import ChatCompletionAudio
-    from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
+    from ..models.chat_completion_message_custom_tool_call import ChatCompletionMessageCustomToolCall
+    from ..models.chat_completion_message_function_tool_call import ChatCompletionMessageFunctionToolCall
     from ..models.function_call import FunctionCall
 
 
@@ -28,7 +29,7 @@ class ChatCompletionMessage:
         annotations (list[Annotation] | None | Unset):
         audio (ChatCompletionAudio | None | Unset):
         function_call (FunctionCall | None | Unset):
-        tool_calls (list[ChatCompletionMessageToolCall] | None | Unset):
+        tool_calls (list[ChatCompletionMessageCustomToolCall | ChatCompletionMessageFunctionToolCall] | None | Unset):
     """
 
     role: Literal["assistant"]
@@ -37,12 +38,13 @@ class ChatCompletionMessage:
     annotations: list[Annotation] | None | Unset = UNSET
     audio: ChatCompletionAudio | None | Unset = UNSET
     function_call: FunctionCall | None | Unset = UNSET
-    tool_calls: list[ChatCompletionMessageToolCall] | None | Unset = UNSET
+    tool_calls: list[ChatCompletionMessageCustomToolCall | ChatCompletionMessageFunctionToolCall] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.chat_completion_audio import ChatCompletionAudio
-        from ..models.function_call import FunctionCall
+        from ..models.chat_completion_audio import ChatCompletionAudio  # noqa: PLC0415
+        from ..models.chat_completion_message_function_tool_call import ChatCompletionMessageFunctionToolCall  # noqa: PLC0415
+        from ..models.function_call import FunctionCall  # noqa: PLC0415
 
         role = self.role
 
@@ -92,7 +94,12 @@ class ChatCompletionMessage:
         elif isinstance(self.tool_calls, list):
             tool_calls = []
             for tool_calls_type_0_item_data in self.tool_calls:
-                tool_calls_type_0_item = tool_calls_type_0_item_data.to_dict()
+                tool_calls_type_0_item: dict[str, Any]
+                if isinstance(tool_calls_type_0_item_data, ChatCompletionMessageFunctionToolCall):
+                    tool_calls_type_0_item = tool_calls_type_0_item_data.to_dict()
+                else:
+                    tool_calls_type_0_item = tool_calls_type_0_item_data.to_dict()
+
                 tool_calls.append(tool_calls_type_0_item)
 
         else:
@@ -122,10 +129,11 @@ class ChatCompletionMessage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.annotation import Annotation
-        from ..models.chat_completion_audio import ChatCompletionAudio
-        from ..models.chat_completion_message_tool_call import ChatCompletionMessageToolCall
-        from ..models.function_call import FunctionCall
+        from ..models.annotation import Annotation  # noqa: PLC0415
+        from ..models.chat_completion_audio import ChatCompletionAudio  # noqa: PLC0415
+        from ..models.chat_completion_message_custom_tool_call import ChatCompletionMessageCustomToolCall  # noqa: PLC0415
+        from ..models.chat_completion_message_function_tool_call import ChatCompletionMessageFunctionToolCall  # noqa: PLC0415
+        from ..models.function_call import FunctionCall  # noqa: PLC0415
 
         d = dict(src_dict)
         role = cast(Literal["assistant"], d.pop("role"))
@@ -206,7 +214,9 @@ class ChatCompletionMessage:
 
         function_call = _parse_function_call(d.pop("function_call", UNSET))
 
-        def _parse_tool_calls(data: object) -> list[ChatCompletionMessageToolCall] | None | Unset:
+        def _parse_tool_calls(
+            data: object,
+        ) -> list[ChatCompletionMessageCustomToolCall | ChatCompletionMessageFunctionToolCall] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -217,14 +227,34 @@ class ChatCompletionMessage:
                 tool_calls_type_0 = []
                 _tool_calls_type_0 = data
                 for tool_calls_type_0_item_data in _tool_calls_type_0:
-                    tool_calls_type_0_item = ChatCompletionMessageToolCall.from_dict(tool_calls_type_0_item_data)
+
+                    def _parse_tool_calls_type_0_item(
+                        data: object,
+                    ) -> ChatCompletionMessageCustomToolCall | ChatCompletionMessageFunctionToolCall:
+                        try:
+                            if not isinstance(data, dict):
+                                raise TypeError()
+                            tool_calls_type_0_item_type_0 = ChatCompletionMessageFunctionToolCall.from_dict(data)
+
+                            return tool_calls_type_0_item_type_0
+                        except (TypeError, ValueError, AttributeError, KeyError):
+                            pass
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        tool_calls_type_0_item_type_1 = ChatCompletionMessageCustomToolCall.from_dict(data)
+
+                        return tool_calls_type_0_item_type_1
+
+                    tool_calls_type_0_item = _parse_tool_calls_type_0_item(tool_calls_type_0_item_data)
 
                     tool_calls_type_0.append(tool_calls_type_0_item)
 
                 return tool_calls_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(list[ChatCompletionMessageToolCall] | None | Unset, data)
+            return cast(
+                list[ChatCompletionMessageCustomToolCall | ChatCompletionMessageFunctionToolCall] | None | Unset, data
+            )
 
         tool_calls = _parse_tool_calls(d.pop("tool_calls", UNSET))
 

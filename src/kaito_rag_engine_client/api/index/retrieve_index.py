@@ -65,7 +65,7 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: RetrieveRequest,
 ) -> Response[HTTPValidationError | RetrieveResponse]:
-    r"""Retrieve Relevant Documents
+    """Retrieve Relevant Documents
 
      Retrieve relevant documents from an index based on messages.
         This endpoint performs semantic retrieve and returns matching documents without LLM generation.
@@ -74,26 +74,26 @@ def sync_detailed(
         ```json
         POST /retrieve
         {
-          \"index_name\": \"test_index\",
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"max_node_count\": 5
+          "index_name": "test_index",
+          "query": "What is retrieval-augmented generation?",
+          "max_node_count": 5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"results\": [
+          "query": "What is retrieval-augmented generation?",
+          "results": [
             {
-              \"doc_id\": \"abc123\",
-              \"node_id\": \"node_456\",
-              \"text\": \"Retrieval-augmented generation (RAG) is a technique...\",
-              \"score\": 0.85,
-              \"metadata\": {\"category\": \"technical\", \"author\": \"John Doe\"}
+              "doc_id": "abc123",
+              "node_id": "node_456",
+              "text": "Retrieval-augmented generation (RAG) is a technique...",
+              "score": 0.85,
+              "metadata": {"category": "technical", "author": "John Doe"}
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
@@ -124,7 +124,7 @@ def sync(
     client: AuthenticatedClient | Client,
     body: RetrieveRequest,
 ) -> HTTPValidationError | RetrieveResponse | None:
-    r"""Retrieve Relevant Documents
+    """Retrieve Relevant Documents
 
      Retrieve relevant documents from an index based on messages.
         This endpoint performs semantic retrieve and returns matching documents without LLM generation.
@@ -133,26 +133,26 @@ def sync(
         ```json
         POST /retrieve
         {
-          \"index_name\": \"test_index\",
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"max_node_count\": 5
+          "index_name": "test_index",
+          "query": "What is retrieval-augmented generation?",
+          "max_node_count": 5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"results\": [
+          "query": "What is retrieval-augmented generation?",
+          "results": [
             {
-              \"doc_id\": \"abc123\",
-              \"node_id\": \"node_456\",
-              \"text\": \"Retrieval-augmented generation (RAG) is a technique...\",
-              \"score\": 0.85,
-              \"metadata\": {\"category\": \"technical\", \"author\": \"John Doe\"}
+              "doc_id": "abc123",
+              "node_id": "node_456",
+              "text": "Retrieval-augmented generation (RAG) is a technique...",
+              "score": 0.85,
+              "metadata": {"category": "technical", "author": "John Doe"}
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
@@ -178,7 +178,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: RetrieveRequest,
 ) -> Response[HTTPValidationError | RetrieveResponse]:
-    r"""Retrieve Relevant Documents
+    """Retrieve Relevant Documents
 
      Retrieve relevant documents from an index based on messages.
         This endpoint performs semantic retrieve and returns matching documents without LLM generation.
@@ -187,26 +187,26 @@ async def asyncio_detailed(
         ```json
         POST /retrieve
         {
-          \"index_name\": \"test_index\",
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"max_node_count\": 5
+          "index_name": "test_index",
+          "query": "What is retrieval-augmented generation?",
+          "max_node_count": 5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"results\": [
+          "query": "What is retrieval-augmented generation?",
+          "results": [
             {
-              \"doc_id\": \"abc123\",
-              \"node_id\": \"node_456\",
-              \"text\": \"Retrieval-augmented generation (RAG) is a technique...\",
-              \"score\": 0.85,
-              \"metadata\": {\"category\": \"technical\", \"author\": \"John Doe\"}
+              "doc_id": "abc123",
+              "node_id": "node_456",
+              "text": "Retrieval-augmented generation (RAG) is a technique...",
+              "score": 0.85,
+              "metadata": {"category": "technical", "author": "John Doe"}
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
@@ -235,7 +235,7 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: RetrieveRequest,
 ) -> HTTPValidationError | RetrieveResponse | None:
-    r"""Retrieve Relevant Documents
+    """Retrieve Relevant Documents
 
      Retrieve relevant documents from an index based on messages.
         This endpoint performs semantic retrieve and returns matching documents without LLM generation.
@@ -244,26 +244,26 @@ async def asyncio(
         ```json
         POST /retrieve
         {
-          \"index_name\": \"test_index\",
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"max_node_count\": 5
+          "index_name": "test_index",
+          "query": "What is retrieval-augmented generation?",
+          "max_node_count": 5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"query\": \"What is retrieval-augmented generation?\",
-          \"results\": [
+          "query": "What is retrieval-augmented generation?",
+          "results": [
             {
-              \"doc_id\": \"abc123\",
-              \"node_id\": \"node_456\",
-              \"text\": \"Retrieval-augmented generation (RAG) is a technique...\",
-              \"score\": 0.85,
-              \"metadata\": {\"category\": \"technical\", \"author\": \"John Doe\"}
+              "doc_id": "abc123",
+              "node_id": "node_456",
+              "text": "Retrieval-augmented generation (RAG) is a technique...",
+              "score": 0.85,
+              "metadata": {"category": "technical", "author": "John Doe"}
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
