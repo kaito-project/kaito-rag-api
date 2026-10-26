@@ -56,6 +56,7 @@ jobs:
           # Start container in background with port mapping
           docker run --rm -d --name kaito-rag-engine \
             -p 5000:5000 \
+            -e PYTHONPATH=/app:/app/guardrail_core \
             ${{ env.REGISTRY }}/kaito-project/kaito/${{ env.IMAGE_NAME }}:${{ github.event.inputs.kaito_rag_engine_version }} python3 main.py
           
           # Wait for service to be ready
