@@ -35,8 +35,8 @@ class CompletionUsage:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.completion_tokens_details import CompletionTokensDetails
-        from ..models.prompt_tokens_details import PromptTokensDetails
+        from ..models.completion_tokens_details import CompletionTokensDetails  # noqa: PLC0415
+        from ..models.prompt_tokens_details import PromptTokensDetails  # noqa: PLC0415
 
         completion_tokens = self.completion_tokens
 
@@ -78,8 +78,8 @@ class CompletionUsage:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.completion_tokens_details import CompletionTokensDetails
-        from ..models.prompt_tokens_details import PromptTokensDetails
+        from ..models.completion_tokens_details import CompletionTokensDetails  # noqa: PLC0415
+        from ..models.prompt_tokens_details import PromptTokensDetails  # noqa: PLC0415
 
         d = dict(src_dict)
         completion_tokens = d.pop("completion_tokens")

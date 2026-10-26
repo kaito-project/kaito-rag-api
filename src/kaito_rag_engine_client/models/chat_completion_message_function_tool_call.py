@@ -10,11 +10,11 @@ if TYPE_CHECKING:
     from ..models.function import Function
 
 
-T = TypeVar("T", bound="ChatCompletionMessageToolCall")
+T = TypeVar("T", bound="ChatCompletionMessageFunctionToolCall")
 
 
 @_attrs_define
-class ChatCompletionMessageToolCall:
+class ChatCompletionMessageFunctionToolCall:
     """
     Attributes:
         id (str):
@@ -48,7 +48,7 @@ class ChatCompletionMessageToolCall:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.function import Function
+        from ..models.function import Function  # noqa: PLC0415
 
         d = dict(src_dict)
         id = d.pop("id")
@@ -59,14 +59,14 @@ class ChatCompletionMessageToolCall:
         if type_ != "function":
             raise ValueError(f"type must match const 'function', got '{type_}'")
 
-        chat_completion_message_tool_call = cls(
+        chat_completion_message_function_tool_call = cls(
             id=id,
             function=function,
             type_=type_,
         )
 
-        chat_completion_message_tool_call.additional_properties = d
-        return chat_completion_message_tool_call
+        chat_completion_message_function_tool_call.additional_properties = d
+        return chat_completion_message_function_tool_call
 
     @property
     def additional_keys(self) -> list[str]:

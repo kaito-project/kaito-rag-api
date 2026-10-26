@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ChatCompletionResponseServiceTierType0(str, Enum):
+class ChatCompletionResponseServiceTierType0(StrEnum):
     AUTO = "auto"
     DEFAULT = "default"
     FLEX = "flex"

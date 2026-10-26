@@ -68,22 +68,24 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     path: str | Unset = "storage",
 ) -> Response[Any | HTTPValidationError]:
-    r"""Persist Index Data to Disk
+    """Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
     saved.
 
         ## Request Example:
         ```
-        POST /persist/example_index?path=./custom_path
+        POST /persist/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, the index will be persisted in the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully persisted index example_index to ./custom_path/example_index.\"
+                "message": "Successfully persisted index example_index to
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 
@@ -117,22 +119,24 @@ def sync(
     client: AuthenticatedClient | Client,
     path: str | Unset = "storage",
 ) -> Any | HTTPValidationError | None:
-    r"""Persist Index Data to Disk
+    """Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
     saved.
 
         ## Request Example:
         ```
-        POST /persist/example_index?path=./custom_path
+        POST /persist/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, the index will be persisted in the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully persisted index example_index to ./custom_path/example_index.\"
+                "message": "Successfully persisted index example_index to
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 
@@ -161,22 +165,24 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     path: str | Unset = "storage",
 ) -> Response[Any | HTTPValidationError]:
-    r"""Persist Index Data to Disk
+    """Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
     saved.
 
         ## Request Example:
         ```
-        POST /persist/example_index?path=./custom_path
+        POST /persist/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, the index will be persisted in the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully persisted index example_index to ./custom_path/example_index.\"
+                "message": "Successfully persisted index example_index to
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 
@@ -208,22 +214,24 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     path: str | Unset = "storage",
 ) -> Any | HTTPValidationError | None:
-    r"""Persist Index Data to Disk
+    """Persist Index Data to Disk
 
      Persist the existing index data to disk at a specified location. This ensures that indexed data is
     saved.
 
         ## Request Example:
         ```
-        POST /persist/example_index?path=./custom_path
+        POST /persist/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, the index will be persisted in the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully persisted index example_index to ./custom_path/example_index.\"
+                "message": "Successfully persisted index example_index to
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 

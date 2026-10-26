@@ -77,21 +77,23 @@ def sync_detailed(
     path: None | str | Unset = UNSET,
     overwrite: bool | Unset = False,
 ) -> Response[Any | HTTPValidationError]:
-    r"""Load Index Data from Disk
+    """Load Index Data from Disk
 
      Load an existing index from disk at a specified location.
 
         ## Request Example:
         ```
-        POST /load/example_index?path=./custom_path/example_index
+        POST /load/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, will attempt to load from the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully loaded index example_index from ./custom_path/example_index.\"
+                "message": "Successfully loaded index example_index from
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 
@@ -129,21 +131,23 @@ def sync(
     path: None | str | Unset = UNSET,
     overwrite: bool | Unset = False,
 ) -> Any | HTTPValidationError | None:
-    r"""Load Index Data from Disk
+    """Load Index Data from Disk
 
      Load an existing index from disk at a specified location.
 
         ## Request Example:
         ```
-        POST /load/example_index?path=./custom_path/example_index
+        POST /load/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, will attempt to load from the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully loaded index example_index from ./custom_path/example_index.\"
+                "message": "Successfully loaded index example_index from
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 
@@ -176,21 +180,23 @@ async def asyncio_detailed(
     path: None | str | Unset = UNSET,
     overwrite: bool | Unset = False,
 ) -> Response[Any | HTTPValidationError]:
-    r"""Load Index Data from Disk
+    """Load Index Data from Disk
 
      Load an existing index from disk at a specified location.
 
         ## Request Example:
         ```
-        POST /load/example_index?path=./custom_path/example_index
+        POST /load/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, will attempt to load from the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully loaded index example_index from ./custom_path/example_index.\"
+                "message": "Successfully loaded index example_index from
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 
@@ -226,21 +232,23 @@ async def asyncio(
     path: None | str | Unset = UNSET,
     overwrite: bool | Unset = False,
 ) -> Any | HTTPValidationError | None:
-    r"""Load Index Data from Disk
+    """Load Index Data from Disk
 
      Load an existing index from disk at a specified location.
 
         ## Request Example:
         ```
-        POST /load/example_index?path=./custom_path/example_index
+        POST /load/example_index?path=storage/custom_path/example_index
         ```
 
         If no path is provided, will attempt to load from the default directory.
+        Custom paths must be within the configured persistence directory.
 
         ## Response Example:
         ```json
         {
-          \"message\": \"Successfully loaded index example_index from ./custom_path/example_index.\"
+                "message": "Successfully loaded index example_index from
+    /app/ragengine/storage/custom_path/example_index."
         }
         ```
 

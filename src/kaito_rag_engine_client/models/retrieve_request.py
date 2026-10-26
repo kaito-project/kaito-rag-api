@@ -33,7 +33,7 @@ class RetrieveRequest:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.retrieve_request_metadata_filter_type_0 import RetrieveRequestMetadataFilterType0
+        from ..models.retrieve_request_metadata_filter_type_0 import RetrieveRequestMetadataFilterType0  # noqa: PLC0415
 
         index_name = self.index_name
 
@@ -66,7 +66,7 @@ class RetrieveRequest:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.retrieve_request_metadata_filter_type_0 import RetrieveRequestMetadataFilterType0
+        from ..models.retrieve_request_metadata_filter_type_0 import RetrieveRequestMetadataFilterType0  # noqa: PLC0415
 
         d = dict(src_dict)
         index_name = d.pop("index_name")

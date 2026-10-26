@@ -70,17 +70,16 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: IndexRequest,
 ) -> Response[HTTPValidationError | list[Document]]:
-    r"""Index Documents
+    """Index Documents
 
      Add documents to an index or create a new index.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"documents\": [
-            {\"text\": \"Sample document text.\", \"metadata\": {\"author\": \"John Doe\", \"category\":
-    \"example\"}}
+          "index_name": "example_index",
+          "documents": [
+            {"text": "Sample document text.", "metadata": {"author": "John Doe", "category": "example"}}
           ]
         }
         ```
@@ -89,11 +88,11 @@ def sync_detailed(
         ```json
         [
           {
-            \"doc_id\": \"123456\",
-            \"text\": \"Sample document text.\",
-            \"hash_value\": null,
-            \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"},
-            \"is_truncated\": false
+            "doc_id": "123456",
+            "text": "Sample document text.",
+            "hash_value": null,
+            "metadata": {"author": "John Doe", "category": "example"},
+            "is_truncated": false
           }
         ]
         ```
@@ -125,17 +124,16 @@ def sync(
     client: AuthenticatedClient | Client,
     body: IndexRequest,
 ) -> HTTPValidationError | list[Document] | None:
-    r"""Index Documents
+    """Index Documents
 
      Add documents to an index or create a new index.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"documents\": [
-            {\"text\": \"Sample document text.\", \"metadata\": {\"author\": \"John Doe\", \"category\":
-    \"example\"}}
+          "index_name": "example_index",
+          "documents": [
+            {"text": "Sample document text.", "metadata": {"author": "John Doe", "category": "example"}}
           ]
         }
         ```
@@ -144,11 +142,11 @@ def sync(
         ```json
         [
           {
-            \"doc_id\": \"123456\",
-            \"text\": \"Sample document text.\",
-            \"hash_value\": null,
-            \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"},
-            \"is_truncated\": false
+            "doc_id": "123456",
+            "text": "Sample document text.",
+            "hash_value": null,
+            "metadata": {"author": "John Doe", "category": "example"},
+            "is_truncated": false
           }
         ]
         ```
@@ -175,17 +173,16 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: IndexRequest,
 ) -> Response[HTTPValidationError | list[Document]]:
-    r"""Index Documents
+    """Index Documents
 
      Add documents to an index or create a new index.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"documents\": [
-            {\"text\": \"Sample document text.\", \"metadata\": {\"author\": \"John Doe\", \"category\":
-    \"example\"}}
+          "index_name": "example_index",
+          "documents": [
+            {"text": "Sample document text.", "metadata": {"author": "John Doe", "category": "example"}}
           ]
         }
         ```
@@ -194,11 +191,11 @@ async def asyncio_detailed(
         ```json
         [
           {
-            \"doc_id\": \"123456\",
-            \"text\": \"Sample document text.\",
-            \"hash_value\": null,
-            \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"},
-            \"is_truncated\": false
+            "doc_id": "123456",
+            "text": "Sample document text.",
+            "hash_value": null,
+            "metadata": {"author": "John Doe", "category": "example"},
+            "is_truncated": false
           }
         ]
         ```
@@ -228,17 +225,16 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: IndexRequest,
 ) -> HTTPValidationError | list[Document] | None:
-    r"""Index Documents
+    """Index Documents
 
      Add documents to an index or create a new index.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"documents\": [
-            {\"text\": \"Sample document text.\", \"metadata\": {\"author\": \"John Doe\", \"category\":
-    \"example\"}}
+          "index_name": "example_index",
+          "documents": [
+            {"text": "Sample document text.", "metadata": {"author": "John Doe", "category": "example"}}
           ]
         }
         ```
@@ -247,11 +243,11 @@ async def asyncio(
         ```json
         [
           {
-            \"doc_id\": \"123456\",
-            \"text\": \"Sample document text.\",
-            \"hash_value\": null,
-            \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"},
-            \"is_truncated\": false
+            "doc_id": "123456",
+            "text": "Sample document text.",
+            "hash_value": null,
+            "metadata": {"author": "John Doe", "category": "example"},
+            "is_truncated": false
           }
         ]
         ```

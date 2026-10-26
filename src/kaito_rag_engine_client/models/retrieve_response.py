@@ -51,7 +51,7 @@ class RetrieveResponse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.node_with_score import NodeWithScore
+        from ..models.node_with_score import NodeWithScore  # noqa: PLC0415
 
         d = dict(src_dict)
         query = d.pop("query")

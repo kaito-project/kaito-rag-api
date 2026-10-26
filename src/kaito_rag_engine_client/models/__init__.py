@@ -4,7 +4,8 @@ from .annotation import Annotation
 from .annotation_url_citation import AnnotationURLCitation
 from .chat_completion_audio import ChatCompletionAudio
 from .chat_completion_message import ChatCompletionMessage
-from .chat_completion_message_tool_call import ChatCompletionMessageToolCall
+from .chat_completion_message_custom_tool_call import ChatCompletionMessageCustomToolCall
+from .chat_completion_message_function_tool_call import ChatCompletionMessageFunctionToolCall
 from .chat_completion_response import ChatCompletionResponse
 from .chat_completion_response_service_tier_type_0 import ChatCompletionResponseServiceTierType0
 from .chat_completion_token_logprob import ChatCompletionTokenLogprob
@@ -14,6 +15,7 @@ from .choice_finish_reason import ChoiceFinishReason
 from .choice_logprobs import ChoiceLogprobs
 from .completion_tokens_details import CompletionTokensDetails
 from .completion_usage import CompletionUsage
+from .custom import Custom
 from .delete_document_request import DeleteDocumentRequest
 from .delete_document_response import DeleteDocumentResponse
 from .document import Document
@@ -34,13 +36,15 @@ from .top_logprob import TopLogprob
 from .update_document_request import UpdateDocumentRequest
 from .update_document_response import UpdateDocumentResponse
 from .validation_error import ValidationError
+from .validation_error_context import ValidationErrorContext
 
 __all__ = (
     "Annotation",
     "AnnotationURLCitation",
     "ChatCompletionAudio",
     "ChatCompletionMessage",
-    "ChatCompletionMessageToolCall",
+    "ChatCompletionMessageCustomToolCall",
+    "ChatCompletionMessageFunctionToolCall",
     "ChatCompletionResponse",
     "ChatCompletionResponseServiceTierType0",
     "ChatCompletionTokenLogprob",
@@ -50,6 +54,7 @@ __all__ = (
     "ChoiceLogprobs",
     "CompletionTokensDetails",
     "CompletionUsage",
+    "Custom",
     "DeleteDocumentRequest",
     "DeleteDocumentResponse",
     "Document",
@@ -70,4 +75,5 @@ __all__ = (
     "UpdateDocumentRequest",
     "UpdateDocumentResponse",
     "ValidationError",
+    "ValidationErrorContext",
 )

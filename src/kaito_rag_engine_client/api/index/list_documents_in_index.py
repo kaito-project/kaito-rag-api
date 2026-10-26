@@ -92,7 +92,7 @@ def sync_detailed(
     max_text_length: int | None | Unset = 1000,
     metadata_filter: None | str | Unset = UNSET,
 ) -> Response[HTTPValidationError | ListDocumentsResponse]:
-    r"""List Documents in an Index
+    """List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
 
@@ -104,21 +104,21 @@ def sync_detailed(
         ## Response Example:
         ```json
         {
-          \"documents\": [
+          "documents": [
             {
-              \"doc_id\": \"123456\",
-              \"text\": \"Sample document text.\",
-              \"metadata\": {\"author\": \"John Doe\"},
-              \"is_truncated\": true
+              "doc_id": "123456",
+              "text": "Sample document text.",
+              "metadata": {"author": "John Doe"},
+              "is_truncated": true
             },
             {
-              \"doc_id\": \"123457\",
-              \"text\": \"Another document text.\",
-              \"metadata\": {\"author\": \"Jane Doe\"},
-              \"is_truncated\": false
+              "doc_id": "123457",
+              "text": "Another document text.",
+              "metadata": {"author": "Jane Doe"},
+              "is_truncated": false
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
@@ -164,7 +164,7 @@ def sync(
     max_text_length: int | None | Unset = 1000,
     metadata_filter: None | str | Unset = UNSET,
 ) -> HTTPValidationError | ListDocumentsResponse | None:
-    r"""List Documents in an Index
+    """List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
 
@@ -176,21 +176,21 @@ def sync(
         ## Response Example:
         ```json
         {
-          \"documents\": [
+          "documents": [
             {
-              \"doc_id\": \"123456\",
-              \"text\": \"Sample document text.\",
-              \"metadata\": {\"author\": \"John Doe\"},
-              \"is_truncated\": true
+              "doc_id": "123456",
+              "text": "Sample document text.",
+              "metadata": {"author": "John Doe"},
+              "is_truncated": true
             },
             {
-              \"doc_id\": \"123457\",
-              \"text\": \"Another document text.\",
-              \"metadata\": {\"author\": \"Jane Doe\"},
-              \"is_truncated\": false
+              "doc_id": "123457",
+              "text": "Another document text.",
+              "metadata": {"author": "Jane Doe"},
+              "is_truncated": false
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
@@ -231,7 +231,7 @@ async def asyncio_detailed(
     max_text_length: int | None | Unset = 1000,
     metadata_filter: None | str | Unset = UNSET,
 ) -> Response[HTTPValidationError | ListDocumentsResponse]:
-    r"""List Documents in an Index
+    """List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
 
@@ -243,21 +243,21 @@ async def asyncio_detailed(
         ## Response Example:
         ```json
         {
-          \"documents\": [
+          "documents": [
             {
-              \"doc_id\": \"123456\",
-              \"text\": \"Sample document text.\",
-              \"metadata\": {\"author\": \"John Doe\"},
-              \"is_truncated\": true
+              "doc_id": "123456",
+              "text": "Sample document text.",
+              "metadata": {"author": "John Doe"},
+              "is_truncated": true
             },
             {
-              \"doc_id\": \"123457\",
-              \"text\": \"Another document text.\",
-              \"metadata\": {\"author\": \"Jane Doe\"},
-              \"is_truncated\": false
+              "doc_id": "123457",
+              "text": "Another document text.",
+              "metadata": {"author": "Jane Doe"},
+              "is_truncated": false
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 
@@ -301,7 +301,7 @@ async def asyncio(
     max_text_length: int | None | Unset = 1000,
     metadata_filter: None | str | Unset = UNSET,
 ) -> HTTPValidationError | ListDocumentsResponse | None:
-    r"""List Documents in an Index
+    """List Documents in an Index
 
      Retrieve a paginated list of documents for a given index.
 
@@ -313,21 +313,21 @@ async def asyncio(
         ## Response Example:
         ```json
         {
-          \"documents\": [
+          "documents": [
             {
-              \"doc_id\": \"123456\",
-              \"text\": \"Sample document text.\",
-              \"metadata\": {\"author\": \"John Doe\"},
-              \"is_truncated\": true
+              "doc_id": "123456",
+              "text": "Sample document text.",
+              "metadata": {"author": "John Doe"},
+              "is_truncated": true
             },
             {
-              \"doc_id\": \"123457\",
-              \"text\": \"Another document text.\",
-              \"metadata\": {\"author\": \"Jane Doe\"},
-              \"is_truncated\": false
+              "doc_id": "123457",
+              "text": "Another document text.",
+              "metadata": {"author": "Jane Doe"},
+              "is_truncated": false
             }
           ],
-          \"count\": 5
+          "count": 5
         }
         ```
 

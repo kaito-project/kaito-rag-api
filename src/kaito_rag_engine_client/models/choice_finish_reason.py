@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ChoiceFinishReason(str, Enum):
+class ChoiceFinishReason(StrEnum):
     CONTENT_FILTER = "content_filter"
     FUNCTION_CALL = "function_call"
     LENGTH = "length"

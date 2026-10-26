@@ -44,7 +44,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[HealthStatus]:
-    r"""Health Check for RAG Engine
+    """Health Check for RAG Engine
 
      Check the health status of the RAG Engine and its components.
 
@@ -52,8 +52,8 @@ def sync_detailed(
         - **Success (200):**
           ```json
           {
-            \"status\": \"Healthy\",
-            \"detail\": null
+            "status": "Healthy",
+            "detail": null
           }
 
     Raises:
@@ -77,7 +77,7 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
 ) -> HealthStatus | None:
-    r"""Health Check for RAG Engine
+    """Health Check for RAG Engine
 
      Check the health status of the RAG Engine and its components.
 
@@ -85,8 +85,8 @@ def sync(
         - **Success (200):**
           ```json
           {
-            \"status\": \"Healthy\",
-            \"detail\": null
+            "status": "Healthy",
+            "detail": null
           }
 
     Raises:
@@ -106,7 +106,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
 ) -> Response[HealthStatus]:
-    r"""Health Check for RAG Engine
+    """Health Check for RAG Engine
 
      Check the health status of the RAG Engine and its components.
 
@@ -114,8 +114,8 @@ async def asyncio_detailed(
         - **Success (200):**
           ```json
           {
-            \"status\": \"Healthy\",
-            \"detail\": null
+            "status": "Healthy",
+            "detail": null
           }
 
     Raises:
@@ -137,7 +137,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
 ) -> HealthStatus | None:
-    r"""Health Check for RAG Engine
+    """Health Check for RAG Engine
 
      Check the health status of the RAG Engine and its components.
 
@@ -145,8 +145,8 @@ async def asyncio(
         - **Success (200):**
           ```json
           {
-            \"status\": \"Healthy\",
-            \"detail\": null
+            "status": "Healthy",
+            "detail": null
           }
 
     Raises:

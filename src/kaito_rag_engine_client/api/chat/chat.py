@@ -65,48 +65,48 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: ChatRequest,
 ) -> Response[ChatCompletionResponse | HTTPValidationError]:
-    r"""OpenAI-Compatible Chat Completions API
+    """OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"model\": \"example_model\",
-          \"messages\": [
-            {\"role\": \"system\", \"content\": \"You are a knowledgeable assistant.\"},
-            {\"role\": \"user\", \"content\": \"What is RAG?\"}
+          "index_name": "example_index",
+          "model": "example_model",
+          "messages": [
+            {"role": "system", "content": "You are a knowledgeable assistant."},
+            {"role": "user", "content": "What is RAG?"}
           ],
-          \"temperature\": 0.7,
-          \"max_tokens\": 2048,
-          \"context_token_ratio\": 0.5
+          "temperature": 0.7,
+          "max_tokens": 2048,
+          "context_token_ratio": 0.5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"id\": \"chatcmpl-123\",
-          \"object\": \"chat.completion\",
-          \"created\": 1677652288,
-          \"model\": \"example_model\",
-          \"choices\": [
+          "id": "chatcmpl-123",
+          "object": "chat.completion",
+          "created": 1677652288,
+          "model": "example_model",
+          "choices": [
             {
-              \"index\": 0,
-              \"message\": {
-                \"role\": \"assistant\",
-                \"content\": \"RAG stands for Retrieval-Augmented Generation...\"
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "RAG stands for Retrieval-Augmented Generation..."
               },
-              \"finish_reason\": \"stop\"
+              "finish_reason": "stop"
             }
           ],
-          \"usage\": {
-            \"prompt_tokens\": 56,
-            \"completion_tokens\": 31,
-            \"total_tokens\": 87
+          "usage": {
+            "prompt_tokens": 56,
+            "completion_tokens": 31,
+            "total_tokens": 87
           },
-          \"source_nodes\": [...]
+          "source_nodes": [...]
         }
         ```
 
@@ -137,48 +137,48 @@ def sync(
     client: AuthenticatedClient | Client,
     body: ChatRequest,
 ) -> ChatCompletionResponse | HTTPValidationError | None:
-    r"""OpenAI-Compatible Chat Completions API
+    """OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"model\": \"example_model\",
-          \"messages\": [
-            {\"role\": \"system\", \"content\": \"You are a knowledgeable assistant.\"},
-            {\"role\": \"user\", \"content\": \"What is RAG?\"}
+          "index_name": "example_index",
+          "model": "example_model",
+          "messages": [
+            {"role": "system", "content": "You are a knowledgeable assistant."},
+            {"role": "user", "content": "What is RAG?"}
           ],
-          \"temperature\": 0.7,
-          \"max_tokens\": 2048,
-          \"context_token_ratio\": 0.5
+          "temperature": 0.7,
+          "max_tokens": 2048,
+          "context_token_ratio": 0.5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"id\": \"chatcmpl-123\",
-          \"object\": \"chat.completion\",
-          \"created\": 1677652288,
-          \"model\": \"example_model\",
-          \"choices\": [
+          "id": "chatcmpl-123",
+          "object": "chat.completion",
+          "created": 1677652288,
+          "model": "example_model",
+          "choices": [
             {
-              \"index\": 0,
-              \"message\": {
-                \"role\": \"assistant\",
-                \"content\": \"RAG stands for Retrieval-Augmented Generation...\"
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "RAG stands for Retrieval-Augmented Generation..."
               },
-              \"finish_reason\": \"stop\"
+              "finish_reason": "stop"
             }
           ],
-          \"usage\": {
-            \"prompt_tokens\": 56,
-            \"completion_tokens\": 31,
-            \"total_tokens\": 87
+          "usage": {
+            "prompt_tokens": 56,
+            "completion_tokens": 31,
+            "total_tokens": 87
           },
-          \"source_nodes\": [...]
+          "source_nodes": [...]
         }
         ```
 
@@ -204,48 +204,48 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: ChatRequest,
 ) -> Response[ChatCompletionResponse | HTTPValidationError]:
-    r"""OpenAI-Compatible Chat Completions API
+    """OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"model\": \"example_model\",
-          \"messages\": [
-            {\"role\": \"system\", \"content\": \"You are a knowledgeable assistant.\"},
-            {\"role\": \"user\", \"content\": \"What is RAG?\"}
+          "index_name": "example_index",
+          "model": "example_model",
+          "messages": [
+            {"role": "system", "content": "You are a knowledgeable assistant."},
+            {"role": "user", "content": "What is RAG?"}
           ],
-          \"temperature\": 0.7,
-          \"max_tokens\": 2048,
-          \"context_token_ratio\": 0.5
+          "temperature": 0.7,
+          "max_tokens": 2048,
+          "context_token_ratio": 0.5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"id\": \"chatcmpl-123\",
-          \"object\": \"chat.completion\",
-          \"created\": 1677652288,
-          \"model\": \"example_model\",
-          \"choices\": [
+          "id": "chatcmpl-123",
+          "object": "chat.completion",
+          "created": 1677652288,
+          "model": "example_model",
+          "choices": [
             {
-              \"index\": 0,
-              \"message\": {
-                \"role\": \"assistant\",
-                \"content\": \"RAG stands for Retrieval-Augmented Generation...\"
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "RAG stands for Retrieval-Augmented Generation..."
               },
-              \"finish_reason\": \"stop\"
+              "finish_reason": "stop"
             }
           ],
-          \"usage\": {
-            \"prompt_tokens\": 56,
-            \"completion_tokens\": 31,
-            \"total_tokens\": 87
+          "usage": {
+            "prompt_tokens": 56,
+            "completion_tokens": 31,
+            "total_tokens": 87
           },
-          \"source_nodes\": [...]
+          "source_nodes": [...]
         }
         ```
 
@@ -274,48 +274,48 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: ChatRequest,
 ) -> ChatCompletionResponse | HTTPValidationError | None:
-    r"""OpenAI-Compatible Chat Completions API
+    """OpenAI-Compatible Chat Completions API
 
      OpenAI-compatible chat completions endpoint with RAG capabilities.
 
         ## Request Example:
         ```json
         {
-          \"index_name\": \"example_index\",
-          \"model\": \"example_model\",
-          \"messages\": [
-            {\"role\": \"system\", \"content\": \"You are a knowledgeable assistant.\"},
-            {\"role\": \"user\", \"content\": \"What is RAG?\"}
+          "index_name": "example_index",
+          "model": "example_model",
+          "messages": [
+            {"role": "system", "content": "You are a knowledgeable assistant."},
+            {"role": "user", "content": "What is RAG?"}
           ],
-          \"temperature\": 0.7,
-          \"max_tokens\": 2048,
-          \"context_token_ratio\": 0.5
+          "temperature": 0.7,
+          "max_tokens": 2048,
+          "context_token_ratio": 0.5
         }
         ```
 
         ## Response Example:
         ```json
         {
-          \"id\": \"chatcmpl-123\",
-          \"object\": \"chat.completion\",
-          \"created\": 1677652288,
-          \"model\": \"example_model\",
-          \"choices\": [
+          "id": "chatcmpl-123",
+          "object": "chat.completion",
+          "created": 1677652288,
+          "model": "example_model",
+          "choices": [
             {
-              \"index\": 0,
-              \"message\": {
-                \"role\": \"assistant\",
-                \"content\": \"RAG stands for Retrieval-Augmented Generation...\"
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "RAG stands for Retrieval-Augmented Generation..."
               },
-              \"finish_reason\": \"stop\"
+              "finish_reason": "stop"
             }
           ],
-          \"usage\": {
-            \"prompt_tokens\": 56,
-            \"completion_tokens\": 31,
-            \"total_tokens\": 87
+          "usage": {
+            "prompt_tokens": 56,
+            "completion_tokens": 31,
+            "total_tokens": 87
           },
-          \"source_nodes\": [...]
+          "source_nodes": [...]
         }
         ```
 

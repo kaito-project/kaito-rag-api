@@ -34,7 +34,7 @@ class Choice:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.choice_logprobs import ChoiceLogprobs
+        from ..models.choice_logprobs import ChoiceLogprobs  # noqa: PLC0415
 
         finish_reason = self.finish_reason.value
 
@@ -66,8 +66,8 @@ class Choice:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.chat_completion_message import ChatCompletionMessage
-        from ..models.choice_logprobs import ChoiceLogprobs
+        from ..models.chat_completion_message import ChatCompletionMessage  # noqa: PLC0415
+        from ..models.choice_logprobs import ChoiceLogprobs  # noqa: PLC0415
 
         d = dict(src_dict)
         finish_reason = ChoiceFinishReason(d.pop("finish_reason"))

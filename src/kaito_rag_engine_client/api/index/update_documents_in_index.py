@@ -70,24 +70,24 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: UpdateDocumentRequest,
 ) -> Response[HTTPValidationError | UpdateDocumentResponse]:
-    r"""Update documents in an Index
+    """Update documents in an Index
 
      Update document in an Index.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents
-        {\"documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\", \"metadata\":
-    {\"author\": \"John Doe\", \"category\": \"example\"}}]}
+        {"documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata": {"author":
+    "John Doe", "category": "example"}}]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"updated_documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\",
-    \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"}}],
-            \"unchanged_documents\": [],
-            \"not_found_documents\": []
+            "updated_documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata":
+    {"author": "John Doe", "category": "example"}}],
+            "unchanged_documents": [],
+            "not_found_documents": []
         },
         ```
 
@@ -121,24 +121,24 @@ def sync(
     client: AuthenticatedClient | Client,
     body: UpdateDocumentRequest,
 ) -> HTTPValidationError | UpdateDocumentResponse | None:
-    r"""Update documents in an Index
+    """Update documents in an Index
 
      Update document in an Index.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents
-        {\"documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\", \"metadata\":
-    {\"author\": \"John Doe\", \"category\": \"example\"}}]}
+        {"documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata": {"author":
+    "John Doe", "category": "example"}}]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"updated_documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\",
-    \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"}}],
-            \"unchanged_documents\": [],
-            \"not_found_documents\": []
+            "updated_documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata":
+    {"author": "John Doe", "category": "example"}}],
+            "unchanged_documents": [],
+            "not_found_documents": []
         },
         ```
 
@@ -167,24 +167,24 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: UpdateDocumentRequest,
 ) -> Response[HTTPValidationError | UpdateDocumentResponse]:
-    r"""Update documents in an Index
+    """Update documents in an Index
 
      Update document in an Index.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents
-        {\"documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\", \"metadata\":
-    {\"author\": \"John Doe\", \"category\": \"example\"}}]}
+        {"documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata": {"author":
+    "John Doe", "category": "example"}}]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"updated_documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\",
-    \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"}}],
-            \"unchanged_documents\": [],
-            \"not_found_documents\": []
+            "updated_documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata":
+    {"author": "John Doe", "category": "example"}}],
+            "unchanged_documents": [],
+            "not_found_documents": []
         },
         ```
 
@@ -216,24 +216,24 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: UpdateDocumentRequest,
 ) -> HTTPValidationError | UpdateDocumentResponse | None:
-    r"""Update documents in an Index
+    """Update documents in an Index
 
      Update document in an Index.
 
         ## Request Example:
         ```json
         POST /indexes/test_index/documents
-        {\"documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\", \"metadata\":
-    {\"author\": \"John Doe\", \"category\": \"example\"}}]}
+        {"documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata": {"author":
+    "John Doe", "category": "example"}}]}
         ```
 
         ## Response Example:
         ```json
         {
-            \"updated_documents\": [{\"doc_id\": \"sampleid\", \"text\": \"Sample document text.\",
-    \"metadata\": {\"author\": \"John Doe\", \"category\": \"example\"}}],
-            \"unchanged_documents\": [],
-            \"not_found_documents\": []
+            "updated_documents": [{"doc_id": "sampleid", "text": "Sample document text.", "metadata":
+    {"author": "John Doe", "category": "example"}}],
+            "unchanged_documents": [],
+            "not_found_documents": []
         },
         ```
 
